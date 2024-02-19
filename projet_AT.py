@@ -37,9 +37,10 @@ while somme_dep < 3 and var_dep == False:
     freq_depart = float(input("Entrez votre fréquence de départ en Hz :"))
     # Pas besoin de tester le type vu qu'on force le type comme étant un float
     if 1E-6 < freq_depart < 3E7:
-        print("Erreur. Votre fréquence de départ doit être un réel compris entre 6µHz et 30 MHz.")
-    else:
         var_dep = True
+    else:
+        print("Erreur. Votre fréquence de départ doit être un réel compris entre 6µHz et 30 MHz.")
+
     somme_dep += 1
 
 if somme_dep == 3 and var_dep == False:
@@ -52,10 +53,11 @@ var_fin = False  # ne respecte pas mes conditions
 
 while somme_fin < 3 and var_fin == False:
     freq_fin = float(input("Entrez votre fréquence de fin en Hz :"))
-    if type(freq_fin) not in [int, float] or freq_fin < 0 or freq_fin <= freq_depart:
-        print("Erreur. Votre fréquence de fin doit être un nombre positif supérieur à la fréquence de départ.")
-    else:
+    if freq_depart < freq_fin < 3E7:
         var_fin = True
+    else:
+        print("Erreur. Votre fréquence de fin doit être un réel compris entre freq_depart et 30 MHz.")
+
     somme_fin += 1
 
 if somme_fin == 3 and var_fin == False:
