@@ -14,29 +14,28 @@ import sys
 # Je lui demande tous mes paramètres + vérification des paramètres :
 
 # ----------{Demande et Test de la fréquence de départ}---------- #
-somme_dep = 0  # le nombre de chances
+essais = 0  # le nombre de chances
 var_dep = False  # ne respecte pas mes conditions
 
-while somme_dep < 3 and var_dep == False:
+while essais < 3 and var_dep == False:
     freq_depart = float(input("Entrez votre fréquence de départ en Hz :"))
-    # Pas besoin de tester le type vu qu'on force le type comme étant un float
     if 1E-6 < freq_depart < 3E7:
         var_dep = True
     else:
         print(f"Erreur. Votre fréquence de départ doit être un réel compris entre 6µHz et 30 MHz.\n"
               f"Vous avez entré {freq_depart}")
 
-    somme_dep += 1
+    essais += 1
 
-if somme_dep == 3 and var_dep == False:
+if essais == 3 and var_dep == False:
     print("Erreur. Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
     sys.exit()
 
 # ----------{Test de la fréquence de fin}---------- #
-somme_fin = 0  # le nombre de chances
+essais = 0  # le nombre de chances
 var_fin = False  # ne respecte pas mes conditions
 
-while somme_fin < 3 and var_fin == False:
+while essais < 3 and var_fin == False:
     freq_fin = float(input("Entrez votre fréquence de fin en Hz :"))
     if freq_depart < freq_fin < 3E7:
         var_fin = True
@@ -44,9 +43,9 @@ while somme_fin < 3 and var_fin == False:
         print(f"Erreur. Votre fréquence de fin doit être un réel compris entre freq_depart et 30 MHz.\n"
               f"Vous avez entré {freq_fin}")
 
-    somme_fin += 1
+    essais += 1
 
-if somme_fin == 3 and var_fin == False:
+if essais == 3 and var_fin == False:
     print("Erreur. Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
     sys.exit()
 
