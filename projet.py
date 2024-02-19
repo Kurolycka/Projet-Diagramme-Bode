@@ -2,6 +2,7 @@ import pyvisa
 import time
 from numpy import *
 import matplotlib.pyplot as plt
+import sys
 
 #penser à dire que le séparateur décimal c'est le point
 #unité de base c'est le volt
@@ -31,10 +32,43 @@ for i in liste :
         print(i+" pas connecté")
     instrument.close()
 
-#Je lui demande tous mes paramètres :
+#Je lui demande tous mes paramètres + vérification des paramètres :
+    
+#Fréquence de départ :    
+somme_dep=0 #le nombre de chances
+var_dep=False #ne respecte pas mes conditions
 
-freq_depart=float(input("Entrez votre fréquence de départ en Hz :"))
-freq_fin=float(input("Entrez votre fréquence de fin en Hz :"))
+while somme_dep<3 and var_dep==False: 
+    freq_depart=float(input("Entrez votre fréquence de départ en Hz :"))
+    if type(freq_depart) not in [int,float] or freq_depart<0:
+        print("Erreur. Votre fréquence de départ doit être un nombre positif.")
+    else :
+        var_dep=True
+    somme_dep+=1
+
+if somme_dep==3 and var_dep==False:
+    print("Erreur. Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
+    sys.exit()
+
+
+#Fréquence de fin :
+somme_fin=0 #le nombre de chances
+var_fin=False #ne respecte pas mes conditions
+
+while somme_fin<3 and var_fin==False: 
+    freq_fin=float(input("Entrez votre fréquence de fin en Hz :"))
+    if type(freq_fin) not in [int,float] or freq_fin<0 or freq_fin<=freq_depart:
+        print("Erreur. Votre fréquence de fin doit être un nombre positif supérieur à la fréquence de départ.")
+    else :
+        var_fin=True
+    somme_fin+=1
+
+if somme_fin==3 and var_fin==False:
+    print("Erreur. Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
+    sys.exit()    
+
+####Reste pas encore fait la vérification de paramètres.
+
 nb_points=int(input("Entrez le nombre de points que vous souhaitez :"))
 
 chan_entree=input("Entrez le channel de votre signal d'entrée (1 ou 2) :")
