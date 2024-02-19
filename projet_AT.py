@@ -10,22 +10,6 @@ import sys
 # long (un sleep au changement de freq, un sleep au changement de base (au moins 2s)) faire un help et prévenir qu'il
 # faut 2s entre chaque mesure.
 
-gestionnaire = pyvisa.ResourceManager()
-
-listePorts = gestionnaire.list_resources('?*')
-
-# Je cherche sur quels ports sont l'oscillo et le GBF
-
-for port in listePorts:
-    try:
-        instrument = gestionnaire.open_resource(port)
-        if "Rigol Technologies,DG1032Z" in instrument.query("*IDN?"):
-            GBF = gestionnaire.open_resource(port)
-        elif "GW,GDS-1072B" in instrument.query("*IDN?"):
-            oscillo = gestionnaire.open_resource(port)
-    except:
-        print(port + " pas connecté")
-    instrument.close()
 
 # Je lui demande tous mes paramètres + vérification des paramètres :
 
@@ -74,6 +58,23 @@ voie_entree = input("Entrez le channel de votre signal d'entrée (1 ou 2) :")
 voie_sortie = input("Entrez le channel de votre signal de sortie (1 ou 2) :")
 
 amplitude_tension = input("Entrez l'amplitude souhaitée pour votre signal d'entrée en V :")
+
+# Je cherche sur quels ports sont l'oscillo et le GBF
+
+gestionnaire = pyvisa.ResourceManager()
+
+listePorts = gestionnaire.list_resources('?*')
+
+for port in listePorts:
+    try:
+        instrument = gestionnaire.open_resource(port)
+        if "Rigol Technologies,DG1032Z" in instrument.query("*IDN?"):
+            GBF = gestionnaire.open_resource(port)
+        elif "GW,GDS-1072B" in instrument.query("*IDN?"):
+            oscillo = gestionnaire.open_resource(port)
+    except:
+        print(port + " pas connecté")
+    instrument.close()
 
 # On définit le signal d'entrée :
 
