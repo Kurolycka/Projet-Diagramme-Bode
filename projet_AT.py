@@ -39,7 +39,8 @@ while somme_dep < 3 and var_dep == False:
     if 1E-6 < freq_depart < 3E7:
         var_dep = True
     else:
-        print(f"Erreur. Votre fréquence de départ doit être un réel compris entre 6µHz et 30 MHz.")
+        print(f"Erreur. Votre fréquence de départ doit être un réel compris entre 6µHz et 30 MHz.\n"
+              f"Vous avez entré {freq_depart}")
 
     somme_dep += 1
 
@@ -56,7 +57,8 @@ while somme_fin < 3 and var_fin == False:
     if freq_depart < freq_fin < 3E7:
         var_fin = True
     else:
-        print("Erreur. Votre fréquence de fin doit être un réel compris entre freq_depart et 30 MHz.")
+        print(f"Erreur. Votre fréquence de fin doit être un réel compris entre freq_depart et 30 MHz.\n"
+              f"Vous avez entré {freq_fin}")
 
     somme_fin += 1
 
