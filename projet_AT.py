@@ -10,26 +10,26 @@ import sys
 # long (un sleep au changement de freq, un sleep au changement de base (au moins 2s)) faire un help et prévenir qu'il
 # faut 2s entre chaque mesure.
 
-manager = pyvisa.ResourceManager()
+gestionnaire = pyvisa.ResourceManager()
 
-nameList = manager.list_resources('?*')
+listePorts = gestionnaire.list_resources('?*')
 
 # Je cherche sur quels ports sont l'oscillo et le GBF
 
-for name in nameList:
+for port in listePorts:
     try:
-        instrument = manager.open_resource(name)
+        instrument = gestionnaire.open_resource(port)
         if "Rigol Technologies,DG1032Z" in instrument.query("*IDN?"):
-            GBF = manager.open_resource(name)
+            GBF = gestionnaire.open_resource(port)
         elif "GW,GDS-1072B" in instrument.query("*IDN?"):
-            oscillo = manager.open_resource(name)
+            oscillo = gestionnaire.open_resource(port)
     except:
-        print(name + " pas connecté")
+        print(port + " pas connecté")
     instrument.close()
 
 # Je lui demande tous mes paramètres + vérification des paramètres :
 
-# ----------{Test de la fréquence de départ}---------- #
+# ----------{Demande et Test de la fréquence de départ}---------- #
 somme_dep = 0  # le nombre de chances
 var_dep = False  # ne respecte pas mes conditions
 
@@ -39,7 +39,7 @@ while somme_dep < 3 and var_dep == False:
     if 1E-6 < freq_depart < 3E7:
         var_dep = True
     else:
-        print("Erreur. Votre fréquence de départ doit être un réel compris entre 6µHz et 30 MHz.")
+        print(f"Erreur. Votre fréquence de départ doit être un réel compris entre 6µHz et 30 MHz.")
 
     somme_dep += 1
 
@@ -68,15 +68,15 @@ if somme_fin == 3 and var_fin == False:
 
 nb_points = int(input("Entrez le nombre de points que vous souhaitez :"))
 
-chan_entree = input("Entrez le channel de votre signal d'entrée (1 ou 2) :")
-chan_sortie = input("Entrez le channel de votre signal de sortie (1 ou 2) :")
+voie_entree = input("Entrez le channel de votre signal d'entrée (1 ou 2) :")
+voie_sortie = input("Entrez le channel de votre signal de sortie (1 ou 2) :")
 
 amplitude_tension = input("Entrez l'amplitude souhaitée pour votre signal d'entrée en V :")
 
 # On définit le signal d'entrée :
 
-GBF.write(":Source" + chan_entree + ":APPLy:sin")
-GBF.write(":Source" + chan_entree + ":VOLT " + amplitude_tension)
+GBF.write(":Source" + voie_entree + ":APPLy:sin")
+GBF.write(":Source" + voie_entree + ":VOLT " + amplitude_tension)
 
 # Balayer les fréquences :
 
@@ -96,21 +96,20 @@ oscillo.read_termination = "\n"
 # 1.e+02, 2.e+02, 5.e+02]
 
 
-for j in plage_freq:
-    GBF.write(":Source" + chan_entree + ":FREQ " + str(j))
+for freq in plage_freq:
+    GBF.write(":Source" + voie_entree + ":FREQ " + str(freq))
     oscillo.write(":AUTOSet")
     time.sleep(2)
 
-    oscillo.write(":MEASure:SOURce2 CH" + chan_entree)
+    oscillo.write(":MEASure:SOURce2 CH" + voie_entree)
     tension_entree.append(float(oscillo.query(":MEASure:PK2Pk?")))
     freq_entree_oscillo.append(float(oscillo.query(":MEASure:FREQuency?")))
 
-    oscillo.write(":MEASure:SOURce1 CH" + chan_sortie)
+    oscillo.write(":MEASure:SOURce1 CH" + voie_sortie)
     tension_sortie.append(float(oscillo.query(":MEASure:PK2Pk?")))
 
     phase.append(float(oscillo.query(":MEASure:PHAse?")))
 
-    mem = echelle
 
 print(freq_entree_oscillo)
 print(tension_entree)
@@ -139,4 +138,4 @@ ax[1].set_xscale("log")
 
 plt.show()
 
-manager.close()
+gestionnaire.close()
