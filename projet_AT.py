@@ -99,13 +99,19 @@ if essais == 3 and nb_points is None:
 # ----------{Test du nombre de la voie d'entrée}---------- #
 essais = 0  # le nombre de chances
 voie_entree = None
+voie_sortie = None
+Voies = [1, 2]
 
 while essais < 3 and voie_entree is None:
     voie_entree = input("Entrez le numéro de voie de votre signal d'entrée (1 ou 2) : ")
     try:
         voie_entree = int(voie_entree)
-        if voie_entree in [1, 2]:
+        if voie_entree in Voies:
             var_test = True
+            Voies.remove(voie_entree)
+            voie_sortie = Voies[0]
+            print(f"La voie de votre signal d'entrée étant la voie N°{voie_entree} "
+                  f"la voie de sortie est la voie N°{voie_sortie}.")
         else:
             print(f"La voie que vous avez entré n'est ni la 1 ni la 2.\n"
                   f"Vous avez entré{voie_entree}")
@@ -117,14 +123,6 @@ while essais < 3 and voie_entree is None:
 if essais == 3 and voie_entree is None:
     print("Erreur. Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
     sys.exit()
-else:
-    if voie_entree == 1:
-        voie_sortie = 2
-    else:
-        voie_sortie = 1
-    print(
-        "La voie de votre signal d'entrée étant " + str(voie_entree) + ", la voie de votre signal de sortie est " + str(
-            voie_sortie) + ".")
 
 # ----------{Test de l'amplitude du signal d'entrée}---------- #
 
@@ -214,7 +212,7 @@ for freq in plage_freq:
     tension_entree.append(float(oscillo.query(":MEASure:PK2Pk?")))
     freq_entree_oscillo.append(float(oscillo.query(":MEASure:FREQuency?")))
 
-    oscillo.write(":MEASure:SOURce1 CH" + var_test)
+    oscillo.write(":MEASure:SOURce1 CH" + voie_sortie)
     tension_sortie.append(float(oscillo.query(":MEASure:PK2Pk?")))
 
     phase.append(float(oscillo.query(":MEASure:PHAse?")))
