@@ -12,12 +12,22 @@ import sys
 
 
 # Je lui demande tous mes paramètres + vérification des paramètres :
+"""
+Pour la vérification des pramaètres on procède de la manière suivante : 
+1. on pose le nombre d'essais à 0 et le paramètre demandé à None pour être sur et certain qu'il soit définit
+2. on demande le paramètre à l'utilisateur en lui donnant les conditions sur celui ci
+3. on essaie de convertir la valeur donné, si ça ne marche pas on prévient l'utilisateur que la variable qu'il a entré
+n'est pas valide et on le laisse repartir de l'éape 2
+4. si la valeur donné est valide mais ne respecte pas les conditions données on le prévient que les conditions n'ont
+pas été respecté et on le laisse repartir de l'étape 2
+5. si toutes les conditions sont réunie en 3 essais ou moins on poursuit le code
+"""
 
 # ----------{Demande et Test de la fréquence de départ}---------- #
 essais = 0  # le nombre de chances
-var_test = False  # ne respecte pas mes conditions
+freq_depart = None
 
-while essais < 3 and var_test == False:
+while essais < 3 and freq_depart is None:
     freq_depart = input("Entrez votre fréquence de départ en Hz : ")
     # Le float n'acceptant pas les "," on les remplace par des "."
     freq_depart = freq_depart.replace(",", ".")
@@ -26,22 +36,22 @@ while essais < 3 and var_test == False:
         if 1E-6 < freq_depart < 3E7:
             var_test = True
         else:
-            print(f"Erreur. Votre fréquence de départ doit être un réel compris entre 1µHz et 30 MHz.\n"
+            print(f"Erreur. Votre fréquence de départ doit être un réel compris strictement entre 1µHz et 30 MHz.\n"
                   f"Vous avez entré {freq_depart}")
     except:
         print(f"Vous n'avez pas entré un nombre réel.\n"
               f"Vous avez entré {freq_depart}")
     essais += 1
 
-if essais == 3 and var_test == False:
+if essais == 3 and freq_depart is None:
     print("Erreur. Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
     sys.exit()
 
 # ----------{Test de la fréquence de fin}---------- #
 essais = 0  # le nombre de chances
-var_test = False  # ne respecte pas mes conditions
+freq_fin = None
 
-while essais < 3 and var_test == False:
+while essais < 3 and freq_fin is None:
     freq_fin = input("Entrez votre fréquence de fin en Hz : ")
     # Le float n'acceptant pas les "," on les remplace par des "."
     freq_fin = freq_fin.replace(",", ".")
@@ -57,15 +67,15 @@ while essais < 3 and var_test == False:
               f"Vous avez entré {freq_fin}")
     essais += 1
 
-if essais == 3 and var_test == False:
+if essais == 3 and freq_fin is None:
     print("Erreur. Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
     sys.exit()
 
 # ----------{Test du nombre de points}---------- #
 essais = 0  # le nombre de chances
-var_test = False  # ne respecte pas mes conditions
+nb_points = None
 
-while essais < 3 and var_test == False:
+while essais < 3 and nb_points is None:
     nb_points = input("Entrez le nombre de mesure à effectuer dans la plage de fréquence choisie ci-dessus : ")
     try:
         nb_points = int(nb_points)
@@ -82,15 +92,15 @@ while essais < 3 and var_test == False:
               f"Vous avez entré {nb_points}")
     essais += 1
 
-if essais == 3 and var_test == False:
+if essais == 3 and nb_points is None:
     print("Erreur. Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
     sys.exit()
 
 # ----------{Test du nombre de la voie d'entrée}---------- #
 essais = 0  # le nombre de chances
-var_test = False  # ne respecte pas mes conditions
+voie_entree = None
 
-while essais < 3 and var_test == False:
+while essais < 3 and voie_entree is None:
     voie_entree = input("Entrez le numéro de voie de votre signal d'entrée (1 ou 2) : ")
     try:
         voie_entree = int(voie_entree)
@@ -104,48 +114,27 @@ while essais < 3 and var_test == False:
               f"Vous avez entré {voie_entree}")
     essais += 1
 
-if essais == 3 and var_test == False:
+if essais == 3 and voie_entree is None:
     print("Erreur. Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
     sys.exit()
+else:
+    if voie_entree == 1:
+        voie_sortie = 2
+    else:
+        voie_sortie = 1
+    print(
+        "La voie de votre signal d'entrée étant " + str(voie_entree) + ", la voie de votre signal de sortie est " + str(
+            voie_sortie) + ".")
 
-var_test = input("Entrez le channel de votre signal de sortie (1 ou 2) : ")
+# ----------{Test de l'amplitude du signal d'entrée}---------- #
 
-# ----------{Test du nombre de la voie de sortie}---------- #
-
-"""
-Est-ce que la voie d'entrée peut être la même que la voie de sortie en soit? pck si non juste on dit que voie
-de sortie c'est l'autre et ça enlève plein de ligne de code genre
-"""
+# Regarder l'amplitude max ? Ai du mal à trouver l'info sur le manuel. Et elle est obligée d'être positive ?
 
 essais = 0  # le nombre de chances
-var_test = False  # ne respecte pas mes conditions
+amplitude = None
 
-while essais < 3 and var_test == False:
-    voie_sortie = input("Entrez le numéro de voie de votre signal de sortie (1 ou 2) : ")
-    try:
-        int(voie_sortie)
-        if voie_sortie in [1, 2]:
-            var_test = True
-        else:
-            print(f"La voie que vous avez entré n'est ni la 1 ni la 2.\n"
-                  f"Vous avez entré{voie_sortie}")
-    except:
-        print(f"Vous n'avez pas entré un nombre entier entre 1 et 2.\n"
-              f"Vous avez entré {voie_sortie}")
-    essais += 1
-
-if essais == 3 and var_test == False:
-    print("Erreur. Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
-    sys.exit()
-
-var_test = input("Entrez le channel de votre signal de sortie (1 ou 2) : ")
-
-# ----------{Test de la fréquence de l'amplitude}---------- #
-essais = 0  # le nombre de chances
-var_test = False  # ne respecte pas mes conditions
-
-while essais < 3 and var_test == False:
-    amplitude = input("Entrez votre fréquence de fin en Hz : ")
+while essais < 3 and amplitude is None:
+    amplitude = input("Entrez l'amplitude du signal d'entrée en volt : ")
     # Le float n'acceptant pas les "," on les remplace par des "."
     amplitude = amplitude.replace(",", ".")
     try:
@@ -153,22 +142,34 @@ while essais < 3 and var_test == False:
         if 0 < amplitude:
             var_test = True
         else:
-            print(f"Erreur. Votre fréquence de fin doit être un réel compris entre freq_depart et 30 MHz.\n"
+            print(f"Erreur. Votre amplitude de signal d'entrée doit être positive.\n"
                   f"Vous avez entré {amplitude}")
     except:
         print(f"Vous n'avez pas entrer un nombre réel.\n"
               f"Vous avez entré {amplitude}")
     essais += 1
 
-if essais == 3 and var_test == False:
+if essais == 3 and amplitude is None:
     print("Erreur. Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
     sys.exit()
 
-# Je cherche sur quels ports sont l'oscillo et le GBF
+# ----------{Ouverture de l'oscillo et du GBF}---------- #
+
+"""
+Pour ouvrir le GBF et l'oscillo on utilise la commande "list_resources" du ressource manager de pyvisa. Elle renvoie 
+la liste de tout les périphériques qui sont connecté à un appareil. On identifie chaque périphériques en leurs 
+demandant de s'identifier avec "*IDN?". 
+Si le périphérique est allumé il renvoie son identification. Si l'identification contient : 
+- "Rigol Technologies,DG1032Z" : alors on a le GBF, on l'ouvre
+- "GW,GDS-1072B" : alors on a l'oscillo, on l'ouvre
+"""
 
 gestionnaire = pyvisa.ResourceManager()
 
 listePorts = gestionnaire.list_resources('?*')
+
+GBF = None
+oscillo = None
 
 for port in listePorts:
     try:
