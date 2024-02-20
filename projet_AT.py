@@ -275,7 +275,7 @@ tension_sortie = array(tension_sortie)
 gain = 20 * log(abs(tension_sortie / tension_entree))
 print(gain)
 
-# ----------{Tracé du diagramme}---------- #
+# ----------{Tracé du diagramme de bode}---------- #
 fig, ax = plt.subplots(2, 1)
 fig.suptitle("Diagramme de Bode")
 
