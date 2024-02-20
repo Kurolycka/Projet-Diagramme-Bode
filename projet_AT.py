@@ -33,18 +33,19 @@ while essais < 3 and freq_depart is None:
     freq_depart = freq_depart.replace(",", ".")
     try:
         freq_depart = float(freq_depart)
-        if 1E-6 < freq_depart < 3E7:
-            var_test = True
-        else:
-            print(f"Erreur. Votre fréquence de départ doit être un réel compris strictement entre 1µHz et 30 MHz.\n"
+        if not(1E-6 < freq_depart < 3E7):
+            print(f"Erreur : Votre fréquence de départ doit être un réel compris strictement entre 1µHz et 30 MHz.\n"
                   f"Vous avez entré {freq_depart}")
+            freq_depart = None
+
     except:
-        print(f"Vous n'avez pas entré un nombre réel.\n"
+        print(f"Erreur : Vous n'avez pas entré un nombre réel.\n"
               f"Vous avez entré {freq_depart}")
+        freq_depart = None
     essais += 1
 
 if essais == 3 and freq_depart is None:
-    print("Erreur. Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
+    print("Erreur : Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
     sys.exit()
 
 # ----------{Test de la fréquence de fin}---------- #
@@ -57,18 +58,19 @@ while essais < 3 and freq_fin is None:
     freq_fin = freq_fin.replace(",", ".")
     try:
         freq_fin = float(freq_fin)
-        if freq_depart < freq_fin < 3E7:
-            var_test = True
-        else:
-            print(f"Erreur. Votre fréquence de fin doit être un réel compris entre freq_depart et 30 MHz.\n"
+        if not(freq_depart < freq_fin < 3E7):
+            print(f"Erreur : Votre fréquence de fin doit être un réel compris entre freq_depart et 30 MHz.\n"
                   f"Vous avez entré {freq_fin}")
+            freq_fin = None
+
     except:
-        print(f"Vous n'avez pas entré un nombre réel.\n"
+        print(f"Erreur : Vous n'avez pas entré un nombre réel.\n"
               f"Vous avez entré {freq_fin}")
+        freq_fin = None
     essais += 1
 
 if essais == 3 and freq_fin is None:
-    print("Erreur. Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
+    print("Erreur : Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
     sys.exit()
 
 # ----------{Test du nombre de points}---------- #
@@ -79,21 +81,24 @@ while essais < 3 and nb_points is None:
     nb_points = input("Entrez le nombre de mesure à effectuer dans la plage de fréquence choisie ci-dessus : ")
     try:
         nb_points = int(nb_points)
-        if nb_points >= 1:
-            verif = input(f"Avec ce nombre de point, votre mesure va durer {nb_points * 2} secondes.\n"
-                          f"Êtes vous sur de vouloir procéder? (o ou n) : ")
-            if verif == "o":
-                var_test = True
-        else:
-            print(f"Le nombre de mesure à effectuer est inférieur à 1.\n"
+        if nb_points < 1:
+            print(f"Erreur : Le nombre de mesure à effectuer est inférieur à 1.\n"
                   f"Vous avez entré {nb_points}")
+            nb_points = None
+        else:
+            verif = input(f"Avertissement : Avec ce nombre de point, votre mesure va durer {nb_points * 2} secondes.\n"
+                          f"Êtes vous sur de vouloir procéder? (o ou n) : ")
+            if verif == "n":
+                nb_points = None
+
     except:
-        print(f"Vous n'avez pas entré un nombre entier.\n"
+        print(f"Erreur : Vous n'avez pas entré un nombre entier.\n"
               f"Vous avez entré {nb_points}")
+        nb_points = None
     essais += 1
 
 if essais == 3 and nb_points is None:
-    print("Erreur. Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
+    print("Erreur : Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
     sys.exit()
 
 # ----------{Test du nombre de la voie d'entrée}---------- #
@@ -107,21 +112,22 @@ while essais < 3 and voie_entree is None:
     try:
         voie_entree = int(voie_entree)
         if voie_entree in Voies:
-            var_test = True
             Voies.remove(voie_entree)
             voie_sortie = Voies[0]
-            print(f"La voie de votre signal d'entrée étant la voie N°{voie_entree} "
+            print(f"Avertissement : La voie de votre signal d'entrée étant la voie N°{voie_entree} "
                   f"la voie de sortie est la voie N°{voie_sortie}.")
         else:
-            print(f"La voie que vous avez entré n'est ni la 1 ni la 2.\n"
+            print(f"Erreur : La voie que vous avez entré n'est ni la 1 ni la 2.\n"
                   f"Vous avez entré{voie_entree}")
+            voie_entree = None
     except:
-        print(f"Vous n'avez pas entré un nombre entier entre 1 et 2.\n"
+        print(f"Erreur : Vous n'avez pas entré un nombre entier entre 1 et 2.\n"
               f"Vous avez entré {voie_entree}")
+        voie_entree = None
     essais += 1
 
 if essais == 3 and voie_entree is None:
-    print("Erreur. Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
+    print("Erreur : Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
     sys.exit()
 
 # ----------{Test de l'amplitude du signal d'entrée}---------- #
@@ -137,17 +143,38 @@ while essais < 3 and amplitude is None:
     amplitude = amplitude.replace(",", ".")
     try:
         amplitude = float(amplitude)
-        if 0 < amplitude:
-            var_test = True
-        else:
-            print(f"Erreur. Votre amplitude de signal d'entrée doit être positive.\n"
+        if 0 >= amplitude:
+            print(f"Erreur : Votre amplitude de signal d'entrée doit être positive.\n"
                   f"Vous avez entré {amplitude}")
+            amplitude = None
     except:
-        print(f"Vous n'avez pas entrer un nombre réel.\n"
+        print(f"Erreur : Vous n'avez pas entrer un nombre réel.\n"
               f"Vous avez entré {amplitude}")
+        amplitude = None
     essais += 1
 
 if essais == 3 and amplitude is None:
+    print("Erreur : Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
+    sys.exit()
+
+# ----------{Test de l'échelle}---------- #
+essais = 0
+echelleLog = None
+
+while essais < 3 and echelleLog is None:
+    echelleLog = input("Entrez le type d'echelle souhaitée (lin/log) : ")
+    echelleLog.lower()
+    if echelleLog == "log":
+        echelleLog = True
+    elif echelleLog == "lin":
+        echelleLog = False
+    else:
+        print(f"Erreur : vous n'avez pas entré lin ou log."
+              f"Vous avez entré {echelleLog}")
+        echelleLog = None
+    essais += 1
+
+if essais == 3 and echelleLog is None:
     print("Erreur. Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
     sys.exit()
 
@@ -180,29 +207,48 @@ for port in listePorts:
     except:
         print(port + " pas connecté")
 
-# On définit le signal d'entrée :
+oscillo.read_termination = "\n"
+
+# ----------{Définition du signal d'entrée}---------- #
+
+"""
+On définit le signal avec les paramètres fournit par l'utilisateur
+"""
 
 GBF.write(":Source" + voie_entree + ":APPLy:sin")
 GBF.write(":Source" + voie_entree + ":VOLT " + amplitude)
 
-# Balayer les fréquences :
+# ----------{Définition de la plage de fréquence}---------- #
 
-plage_freq = list(logspace(log10(freq_depart), log10(freq_fin), nb_points))
-plage_freq = [round(i, 4) for i in plage_freq]
-print(plage_freq)
+"""
+Pour définir la fréquence il y a deux situations, soit l'utilisateur veut une échelle logarithmique soit il veut
+une échelle linéaire : 
+- pour l'écgelle log : on utilise le logspace de numpy. mais il faut penser à convertir les limites de la plage
+de fréquence en leurs équivalent en puissance de 10.
+- pour l'échelle lin : on utilise le linspace de numpy sans conversions cette fois-ci.
+"""
+
+if echelleLog:
+    plage_freq = list(logspace(log10(freq_depart), log10(freq_fin), nb_points))
+    plage_freq = [round(i, 4) for i in plage_freq]
+    print(plage_freq)
+else:
+    plage_freq = list(linspace(freq_depart, freq_fin, nb_points))
+    plage_freq = [round(i, 4) for i in plage_freq]
+    print(plage_freq)
+
+# ----------{Définition des listes de stockage et constantes}---------- #
 tension_entree = []
 tension_sortie = []
 freq_entree_oscillo = []
 phase = []
-
-oscillo.read_termination = "\n"
 
 # echelles_possibles=[1.e-08, 2.e-08, 5.e-08, 1.e-07, 2.e-07, 5.e-07, 1.e-06, 2.e-06, 5.e-06, 1.e-05,
 # 2.e-05, 5.e-05, 1.e-04, 2.e-04, 5.e-04, 1.e-03, 2.e-03, 5.e-03, 1.e-02, 2.e-02,
 # 5.e-02, 1.e-01, 2.e-01, 5.e-01, 1.e+00, 2.e+00, 5.e+00, 1.e+01, 2.e+01, 5.e+01,
 # 1.e+02, 2.e+02, 5.e+02]
 
-
+# ----------{Balayage de la plage de fréquences et mesures}---------- #
 for freq in plage_freq:
     GBF.write(":Source" + voie_entree + ":FREQ " + str(freq))
     oscillo.write(":AUTOSet")
@@ -222,25 +268,29 @@ print(tension_entree)
 print(tension_sortie)
 print(phase)
 
+# ----------{calcul du gain}---------- #
 tension_entree = array(tension_entree)
 tension_sortie = array(tension_sortie)
 
 gain = 20 * log(abs(tension_sortie / tension_entree))
 print(gain)
 
+# ----------{Tracé du diagramme}---------- #
 fig, ax = plt.subplots(2, 1)
 fig.suptitle("Diagramme de Bode")
 
 ax[0].plot(freq_entree_oscillo, gain, color="purple")
 # ax[0].set_title("Gain en fonction de la fréquence")
-ax[0].set_xlabel("Fréquence (Hz, échelle log)")
-ax[0].set_xscale("log")
+ax[0].set_xlabel("Fréquence (Hz)")
 ax[0].set_ylabel("Gain (dB)")
+if echelleLog:
+    ax[0].set_xscale("log")
 ax[1].plot(freq_entree_oscillo, phase, color="orange")
 # ax[1].set_title("Phase en fonction de la fréquence")
-ax[1].set_xlabel("Fréquence (Hz, échelle log)")
+ax[1].set_xlabel("Fréquence (Hz)")
 ax[1].set_ylabel("Phase (°)")
-ax[1].set_xscale("log")
+if echelleLog:
+    ax[1].set_xscale("log")
 
 plt.show()
 
