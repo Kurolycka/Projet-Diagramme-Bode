@@ -98,7 +98,7 @@ while essais < 3 and var_test == False:
             var_test = True
         else:
             print(f"La voie que vous avez entré n'est ni la 1 ni la 2.\n"
-                  f"Vous avez entré{voie_entree}")
+                  f"Vous avez entré {voie_entree}")
     except:
         print(f"Vous n'avez pas entré un nombre entier entre 1 et 2.\n"
               f"Vous avez entré {voie_entree}")
