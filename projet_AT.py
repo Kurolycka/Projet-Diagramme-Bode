@@ -24,90 +24,93 @@ pas été respecté et on le laisse repartir de l'étape 2
 """
 
 # ----------{Demande et Test de la fréquence de départ}---------- #
-essais = 0  # le nombre de chances
 freq_depart = None
+essais = 0  # le nombre de chances
+var_test = False
 
-while essais < 3 and freq_depart is None:
+while essais < 3 and var_test == False:
     freq_depart = input("Entrez votre fréquence de départ en Hz : ")
     # Le float n'acceptant pas les "," on les remplace par des "."
     freq_depart = freq_depart.replace(",", ".")
     try:
         freq_depart = float(freq_depart)
-        if not(1E-6 < freq_depart < 3E7):
+        if 1E-6 < freq_depart < 3E7:
+            var_test = True
+        else:
             print(f"Erreur : Votre fréquence de départ doit être un réel compris strictement entre 1µHz et 30 MHz.\n"
                   f"Vous avez entré {freq_depart}")
-            freq_depart = None
 
     except:
         print(f"Erreur : Vous n'avez pas entré un nombre réel.\n"
               f"Vous avez entré {freq_depart}")
-        freq_depart = None
     essais += 1
 
-if essais == 3 and freq_depart is None:
+if essais == 3 and var_test == False:
     print("Erreur : Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
     sys.exit()
 
 # ----------{Test de la fréquence de fin}---------- #
-essais = 0  # le nombre de chances
 freq_fin = None
+essais = 0  # le nombre de chances
+var_test = False
 
-while essais < 3 and freq_fin is None:
+while essais < 3 and var_test == False:
     freq_fin = input("Entrez votre fréquence de fin en Hz : ")
     # Le float n'acceptant pas les "," on les remplace par des "."
     freq_fin = freq_fin.replace(",", ".")
     try:
         freq_fin = float(freq_fin)
-        if not(freq_depart < freq_fin < 3E7):
+        if freq_depart < freq_fin < 3E7:
+            var_test = True
+        else:
             print(f"Erreur : Votre fréquence de fin doit être un réel compris entre freq_depart et 30 MHz.\n"
                   f"Vous avez entré {freq_fin}")
-            freq_fin = None
 
     except:
         print(f"Erreur : Vous n'avez pas entré un nombre réel.\n"
               f"Vous avez entré {freq_fin}")
-        freq_fin = None
     essais += 1
 
-if essais == 3 and freq_fin is None:
+if essais == 3 and var_test == False:
     print("Erreur : Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
     sys.exit()
 
 # ----------{Test du nombre de points}---------- #
 essais = 0  # le nombre de chances
+var_test = False
 nb_points = None
 
-while essais < 3 and nb_points is None:
+while essais < 3 and var_test == False:
     nb_points = input("Entrez le nombre de mesure à effectuer dans la plage de fréquence choisie ci-dessus : ")
     try:
         nb_points = int(nb_points)
-        if nb_points < 1:
-            print(f"Erreur : Le nombre de mesure à effectuer est inférieur à 1.\n"
-                  f"Vous avez entré {nb_points}")
-            nb_points = None
-        else:
+        if nb_points >= 1:
             verif = input(f"Avertissement : Avec ce nombre de point, votre mesure va durer {nb_points * 2} secondes.\n"
                           f"Êtes vous sur de vouloir procéder? (o ou n) : ")
-            if verif == "n":
-                nb_points = None
+            if verif == "o":
+                var_test = True
+
+        else:
+            print(f"Erreur : Le nombre de mesure à effectuer est inférieur à 1.\n"
+                  f"Vous avez entré {nb_points}")
 
     except:
         print(f"Erreur : Vous n'avez pas entré un nombre entier.\n"
               f"Vous avez entré {nb_points}")
-        nb_points = None
     essais += 1
 
-if essais == 3 and nb_points is None:
+if essais == 3 and var_test == False:
     print("Erreur : Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
     sys.exit()
 
 # ----------{Test du nombre de la voie d'entrée}---------- #
 essais = 0  # le nombre de chances
+var_test = False
 voie_entree = None
 voie_sortie = None
 Voies = [1, 2]
 
-while essais < 3 and voie_entree is None:
+while essais < 3 and var_test == False:
     voie_entree = input("Entrez le numéro de voie de votre signal d'entrée (1 ou 2) : ")
     try:
         voie_entree = int(voie_entree)
@@ -119,49 +122,48 @@ while essais < 3 and voie_entree is None:
         else:
             print(f"Erreur : La voie que vous avez entré n'est ni la 1 ni la 2.\n"
                   f"Vous avez entré{voie_entree}")
-            voie_entree = None
     except:
         print(f"Erreur : Vous n'avez pas entré un nombre entier entre 1 et 2.\n"
               f"Vous avez entré {voie_entree}")
-        voie_entree = None
     essais += 1
 
-if essais == 3 and voie_entree is None:
+if essais == 3 and var_test == False:
     print("Erreur : Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
     sys.exit()
 
 # ----------{Test de l'amplitude du signal d'entrée}---------- #
 
 # Regarder l'amplitude max ? Ai du mal à trouver l'info sur le manuel. Et elle est obligée d'être positive ?
-
+var_test = False
 essais = 0  # le nombre de chances
 amplitude = None
 
-while essais < 3 and amplitude is None:
+while essais < 3 and var_test == False:
     amplitude = input("Entrez l'amplitude du signal d'entrée en volt : ")
     # Le float n'acceptant pas les "," on les remplace par des "."
     amplitude = amplitude.replace(",", ".")
     try:
         amplitude = float(amplitude)
-        if 0 >= amplitude:
-            print(f"Erreur : Votre amplitude de signal d'entrée doit être positive.\n"
+        if 0 < amplitude:
+            var_test = True
+        else:
+            print(f"Erreur : Votre amplitude de signal d'entrée doit être strictement positive.\n"
                   f"Vous avez entré {amplitude}")
-            amplitude = None
     except:
-        print(f"Erreur : Vous n'avez pas entrer un nombre réel.\n"
+        print(f"Erreur : Vous n'avez pas entré un nombre réel.\n"
               f"Vous avez entré {amplitude}")
-        amplitude = None
     essais += 1
 
-if essais == 3 and amplitude is None:
+if essais == 3 and var_test == False:
     print("Erreur : Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
     sys.exit()
 
 # ----------{Test de l'échelle}---------- #
 essais = 0
+var_test = False
 echelleLog = None
 
-while essais < 3 and echelleLog is None:
+while essais < 3 and var_test == False:
     echelleLog = input("Entrez le type d'echelle souhaitée (lin/log) : ")
     echelleLog.lower()
     if echelleLog == "log":
@@ -171,10 +173,9 @@ while essais < 3 and echelleLog is None:
     else:
         print(f"Erreur : vous n'avez pas entré lin ou log."
               f"Vous avez entré {echelleLog}")
-        echelleLog = None
     essais += 1
 
-if essais == 3 and echelleLog is None:
+if essais == 3 and var_test == False:
     print("Erreur. Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
     sys.exit()
 
