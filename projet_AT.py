@@ -75,6 +75,24 @@ if essais == 3 and var_test == False:
     print("Erreur : Trop de mauvaises tentatives. Retournez voir l'help si besoin.")
     sys.exit()
 
+# ----------{Détermination de l'amplitude max que le GBF peut produire}---------- #
+"""
+L'amplitude maximale générée par le GBF dépend de la fréquence utilisée et de l'impédance du GBF. 
+Pour l'impédance 50 Ohm on a : 
+- < 10 MHz : 10 Vpp
+- 10 - 30 MHz : 5.0 Vpp
+- 30 - 60 MHz : 2.5 Vpp
+l'utilisateur va donc pouvoir choisir son amplitude max, mais c'est l'amplitude max du générateur qui va l'emporter
+"""
+amplitude_max = None
+if freq_fin < 1E+7:
+    amplitude_max = 10
+elif 1E+7 <= freq_fin < 3E+7:
+    amplitude_max = 5
+elif 3E+7 <= freq_fin < 6E+7:
+    amplitude_max = 2.5
+
+
 # ----------{Test du nombre de points}---------- #
 essais = 0  # le nombre de chances
 var_test = False
@@ -132,22 +150,22 @@ if essais == 3 and var_test == False:
     sys.exit()
 
 # ----------{Test de l'amplitude du signal d'entrée}---------- #
-
-# Regarder l'amplitude max ? Ai du mal à trouver l'info sur le manuel. Et elle est obligée d'être positive ?
 var_test = False
 essais = 0  # le nombre de chances
 amplitude = None
 
 while essais < 3 and var_test == False:
+
     amplitude = input("Entrez l'amplitude du signal d'entrée en volt : ")
     # Le float n'acceptant pas les "," on les remplace par des "."
     amplitude = amplitude.replace(",", ".")
     try:
         amplitude = float(amplitude)
-        if 0 < amplitude:
+        if 2.5E-3 <= amplitude <= amplitude_max:
             var_test = True
         else:
-            print(f"Erreur : Votre amplitude de signal d'entrée doit être strictement positive.\n"
+            print(f"Erreur : Votre amplitude de signal d'entrée doit être comprise entre 2.5 mV et "
+                  f"{amplitude_max:.2f}V.\n"
                   f"Vous avez entré {amplitude}")
     except:
         print(f"Erreur : Vous n'avez pas entré un nombre réel.\n"
@@ -164,7 +182,7 @@ var_test = False
 echelleLog = None
 
 while essais < 3 and var_test == False:
-    echelleLog = input("Entrez le type d'echelle souhaitée (lin/log) : ")
+    echelleLog = input("Entrez le type d'echelle souhaitée pour l'axe des abscicces (lin/log) : ")
     echelleLog.lower()
     if echelleLog == "log":
         echelleLog = True
