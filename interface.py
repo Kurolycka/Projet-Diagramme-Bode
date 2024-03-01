@@ -4,6 +4,7 @@
 
 from tkinter import *
 from tkinter import ttk
+from tkinter import messagebox
 
 #--------------------{Préparation des variables globales}---------------------
 freq_dep = ""
@@ -14,17 +15,72 @@ amplitude_entree = ""
 
 #--------------------{Fonctions pour les widgets}---------------------
 
+def validate_freq_dep():
+    global freq_dep
+    freq_dep = entry1.get()
+    freq_dep = freq_dep.replace(",",".")
+    try:
+        freq_dep = float(freq_dep)
+        if 1E-6 < freq_dep < 3E7:
+            return True 
+        else:
+            messagebox.showerror("Erreur", f"Votre fréquence de départ doit être un réel compris entre 1µHz et 30 MHz.\n"
+                  f"Vous avez entré {freq_dep} Hz.")
+            return False  
+    except:
+        messagebox.showerror("Erreur", f"Votre fréquence de départ doit être un réel compris entre 1µHz et 30 MHz.\n"
+              f"Vous avez entré {freq_dep} Hz.")
+        return False
+    
+def validate_freq_fin():
+    global freq_fin
+    freq_fin=entry2.get()
+    freq_fin=freq_fin.replace(",",".")
+    try:
+        freq_fin=float(freq_fin)
+        if freq_dep < freq_fin < 3E7 :
+            return True 
+        else :
+            messagebox.showerror("Erreur",f"Votre fréquence de fin doit être un réel compris entre {freq_dep} Hz et 30 MHz.\n"
+                  f"Vous avez entré {freq_fin} Hz.")
+            return False
+    except:
+        messagebox.showerror("Erreur",f"Vous n'avez pas entré un nombre réel pour la fréquence de fin.\n"
+              f"Vous avez entré {freq_fin} Hz.")
+        return False
+    
+def validate_amplitude_entree():
+    global amplitude_entree
+    amplitude_entree=entry5.get()
+    amplitude_entree=amplitude_entree.replace(",",".")
+    try:
+        amplitude_entree=float(amplitude_entree)
+        if 0 < amplitude_entree:
+            return True
+        else :
+            messagebox.showerror("Erreur",f"Votre amplitude de signal d'entrée doit être positive.\n"
+                  f"Vous avez entré {amplitude_entree} V.")
+            return False  
+    except:
+        messagebox.showerror("Erreur",f"Vous n'avez pas entré un nombre réel.\n"
+              f"Vous avez entré {amplitude_entree}.")
+        return False
+    
+
 def get_text():
     global freq_dep
     global freq_fin
     global nb_points
     global voie_entree
     global amplitude_entree
-    freq_dep = entry1.get()  # Récupère le texte entré par l'utilisateur dans la première entrée
-    freq_fin = entry2.get()  # Récupère le texte entré par l'utilisateur dans la deuxième entrée
+    if not validate_freq_dep():
+       return
+    if not validate_freq_fin():
+       return
     nb_points = entry3.get()
     voie_entree = entry4.get()
-    amplitude_entree = entry5.get()
+    if not validate_amplitude_entree():
+       return
     print("Texte saisi (Entrée 1) :", freq_dep)
     print("Texte saisi (Entrée 2) :", freq_fin)
     print("Texte saisi (Entrée 3) :", nb_points)
