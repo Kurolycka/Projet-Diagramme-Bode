@@ -135,6 +135,11 @@ ttk.Button(frm, text="Valider", command=get_text).grid(column=1, row=7)
 ttk.Button(frm, text="Aide", command=open_window).grid(column=0, row=7)
 ttk.Button(frm, text="Quitter", command=root.destroy).grid(column=2, row=7)
 
+# Personnalisation des boutons avec la couleur rose
+style = ttk.Style()
+style.theme_use('clam')  
+style.configure('TButton', background='pink', foreground='black', padding=10) 
+
 root.mainloop()
 
 #--------------------{Vérification des variables globales}---------------------
