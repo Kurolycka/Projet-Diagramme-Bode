@@ -4,11 +4,13 @@ from numpy import *
 import matplotlib.pyplot as plt
 import sys
 
+# Mettre dans le readme quelles références de machines utiliser.
 # penser à dire que le séparateur décimal c'est le point unité de base c'est le volt Demander pour l'échelle
 # logarithmique faire gaffe à Vsortie=Ventrée Incertitudes ? vérification des paramètres limitations GBF : 1 microHz
 # à 30MHz Faire gaffe à mettre le trigger sur l'entrée autoset car scale : pleins de sleep partout donc au final plus
 # long (un sleep au changement de freq, un sleep au changement de base (au moins 2s)) faire un help et prévenir qu'il
 # faut 2s entre chaque mesure.
+# Penser à pas faire 2sec mais quand il est prêt. 
 
 
 # Je lui demande tous mes paramètres + vérification des paramètres :
