@@ -12,6 +12,7 @@ freq_fin = ""
 nb_points = ""
 voie_entree = ""
 amplitude_entree = ""
+voie_sortie = ""
 
 #--------------------{Fonctions pour les widgets}---------------------
 
@@ -65,6 +66,47 @@ def validate_amplitude_entree():
         messagebox.showerror("Erreur",f"Vous n'avez pas entré un nombre réel.\n"
               f"Vous avez entré {amplitude_entree}.")
         return False
+        
+def validate_nb_points():
+    global nb_points
+    nb_points=entry3.get()
+    nb_points=nb_points.replace(",",".")
+    try:
+        nb_points=int(nb_points)
+        if nb_points >=1:
+            response = messagebox.askquestion("Confirmation",
+                                              f"Avec ce nombre de points, votre mesure va durer {nb_points * 2} secondes.\n"
+                                              "Êtes-vous sûr de vouloir procéder ?")
+            if response == 'yes':
+                return True
+            else:
+                return False
+            return True 
+        else :
+            return False  
+    except:
+        messagebox.showerror("Erreur",f"Vous n'avez pas entré un nombre entier.\n Vous avez entré {nb_points}.")
+        return False
+    
+def validate_voie_entree():
+    global voie_entree
+    global voie_sortie
+    voie_entree=entry4.get()
+    voie_entree=voie_entree.replace(",",".")
+    try :
+        voie_entree=int(voie_entree)
+        if voie_entree==1 or voie_entree==2:
+            if voie_entree==1:
+                voie_sortie=2
+            else :
+                voie_sortie=1
+            return True
+        else :
+            messagebox.showerror("Erreur",f"Vous n'avez pas choisi 1 ou 2 comme voie d'entrée.")
+            return False
+    except:
+        messagebox.showerror("Erreur",f"Vous n'avez pas entré un nombre entier.\n Vous avez entré {voie_entree}.")
+        return False 
     
 
 def get_text():
@@ -73,12 +115,15 @@ def get_text():
     global nb_points
     global voie_entree
     global amplitude_entree
+    global voie_sortie
     if not validate_freq_dep():
        return
     if not validate_freq_fin():
        return
-    nb_points = entry3.get()
-    voie_entree = entry4.get()
+    if not validate_nb_points():
+       return
+    if not validate_voie_entree():
+        return
     if not validate_amplitude_entree():
        return
     print("Texte saisi (Entrée 1) :", freq_dep)
@@ -86,6 +131,7 @@ def get_text():
     print("Texte saisi (Entrée 3) :", nb_points)
     print("Texte saisi (Entrée 4) :", voie_entree)
     print("Texte saisi (Entrée 5) :", amplitude_entree)
+    print("Voie sortie par défaut :", voie_sortie)
     
 def open_window():
     # Créer une nouvelle fenêtre
@@ -100,6 +146,11 @@ def open_window():
     
 root = Tk()
 root.title("Diagramme de Bode")
+
+style = ttk.Style()
+style.theme_use('alt')  
+style.configure('TButton', background='pink', foreground='black', borderradius=50, padding=10) 
+root.configure(bg='green')
 
 frm = ttk.Frame(root, padding=10)
 frm.grid()
@@ -135,10 +186,6 @@ ttk.Button(frm, text="Valider", command=get_text).grid(column=1, row=7)
 ttk.Button(frm, text="Aide", command=open_window).grid(column=0, row=7)
 ttk.Button(frm, text="Quitter", command=root.destroy).grid(column=2, row=7)
 
-# Personnalisation des boutons avec la couleur rose
-style = ttk.Style()
-style.theme_use('clam')  
-style.configure('TButton', background='pink', foreground='black', padding=10) 
 
 root.mainloop()
 
