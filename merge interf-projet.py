@@ -7,13 +7,21 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 
+#--------------------{Objectifs}---------------------
+
 # Mettre dans le readme quelles références de machines utiliser.
-# penser à dire que le séparateur décimal c'est le point unité de base c'est le volt Demander pour l'échelle
-# logarithmique faire gaffe à Vsortie=Ventrée Incertitudes ? vérification des paramètres limitations GBF : 1 microHz
-# à 30MHz Faire gaffe à mettre le trigger sur l'entrée autoset car scale : pleins de sleep partout donc au final plus
-# long (un sleep au changement de freq, un sleep au changement de base (au moins 2s)) faire un help et prévenir qu'il
-# faut 2s entre chaque mesure.
+# logarithmique faire gaffe à Vsortie=Ventrée Incertitudes ?
+# Voir le fonctionnement du trigger
+# Afficher les incertitudes
 # Penser à pas faire 2sec mais quand il est prêt. 
+# Choisir la moyenne d'échantillon
+# Se mettre en couplage AC : mesure et trigger et donc mettre le trigger à 0
+# Faire autoset que si changement d'échelle nécessaire (précision de 3% en vertical)
+# changer le message temps par min et max
+# regarder amplitude max
+# remplacer pk2pk par amplitude 
+# faire attention si tension trop basse (en-dessous de 10 mV) arrêter les mesures car n'importe quoi
+# comparer avec la valeur théorique de la fréquence de coupure 
 
 
 #--------------------{Préparation des variables globales}---------------------
@@ -23,6 +31,7 @@ nb_points = ""
 voie_entree = ""
 amplitude_entree = ""
 voie_sortie = ""
+voie_GBF= ""
 
 #--------------------{Fonctions pour les widgets}---------------------
 
@@ -66,7 +75,7 @@ def validate_amplitude_entree():
     amplitude_entree=amplitude_entree.replace(",",".")
     try:
         amplitude_entree=float(amplitude_entree)
-        if 0 < amplitude_entree:
+        if 2.5E-3 <= amplitude_entree:
             return True
         else :
             messagebox.showerror("Erreur",f"Votre amplitude de signal d'entrée doit être positive.\n"
@@ -118,6 +127,21 @@ def validate_voie_entree():
         messagebox.showerror("Erreur",f"Vous n'avez pas entré un nombre entier.\n Vous avez entré {voie_entree}.")
         return False 
     
+def validate_voie_GBF():
+    global voie_GBF
+    voie_GBF=entry6.get()
+    voie_GBF=voie_GBF.replace(",",".")
+    try :
+        voie_GBF=int(voie_entree)
+        if voie_GBF==1 or voie_GBF==2:
+            return True
+        else :
+            messagebox.showerror("Erreur",f"Vous n'avez pas choisi 1 ou 2 comme voie d'entrée du générateur.")
+            return False
+    except:
+        messagebox.showerror("Erreur",f"Vous n'avez pas entré un nombre entier.\n Vous avez entré {voie_entree}.")
+        return False 
+    
 
 def get_text():
     global freq_dep
@@ -126,22 +150,28 @@ def get_text():
     global voie_entree
     global amplitude_entree
     global voie_sortie
+    global voie_GBF
     if not validate_freq_dep():
-       return
-    if not validate_freq_fin():
-       return
-    if not validate_nb_points():
-       return
-    if not validate_voie_entree():
-        return
-    if not validate_amplitude_entree():
-       return
+       return False
+    elif not validate_freq_fin():
+       return False
+    elif not validate_voie_entree():
+        return False
+    elif not validate_amplitude_entree():
+       return False
+    elif not validate_voie_GBF():
+       return False
+    elif not validate_nb_points():
+       return False
+    else:
+       return True
     print("Texte saisi (Entrée 1) :", freq_dep)
     print("Texte saisi (Entrée 2) :", freq_fin)
     print("Texte saisi (Entrée 3) :", nb_points)
     print("Texte saisi (Entrée 4) :", voie_entree)
     print("Texte saisi (Entrée 5) :", amplitude_entree)
     print("Voie sortie par défaut :", voie_sortie)
+    print("Voie du générateur :", voie_GBF)
     
 def open_window():
     # Créer une nouvelle fenêtre
@@ -187,14 +217,32 @@ ttk.Label(frm, text="Amplitude du signal d'entrée (V) : ").grid(column=0, row=5
 entry5 = ttk.Entry(frm)
 entry5.grid(column=1, row=5)
 
+ttk.Label(frm, text="Numéro de voie du générateur : ").grid(column=0, row=6)
+entry6 = ttk.Entry(frm)
+entry6.grid(column=1, row=6)
+
 #Pour ajouter un espace avant les boutons :
-ttk.Label(frm, text="").grid(column=0, row=6)
+ttk.Label(frm, text="").grid(column=0, row=7)
+
+
+#--------------------{fonctions pour les boutons}---------------------
+
+def get_text_and_destroy():
+    if get_text():
+        root.destroy() # si get_text() on continue en tuant la fenêtre
+
+        
+    
+def quit_program():
+    root.destroy()
+    sys.exit()
 
 #--------------------{Les boutons au bottom}---------------------
 
-ttk.Button(frm, text="Valider", command=get_text).grid(column=1, row=7)
-ttk.Button(frm, text="Aide", command=open_window).grid(column=0, row=7)
-ttk.Button(frm, text="Quitter", command=root.destroy).grid(column=2, row=7)
+
+ttk.Button(frm, text="Valider", command=get_text_and_destroy).grid(column=1, row=8)
+ttk.Button(frm, text="Aide", command=open_window).grid(column=0, row=8)
+ttk.Button(frm, text="Quitter", command=quit_program).grid(column=2, row=8)
 
 
 root.mainloop()
@@ -206,6 +254,7 @@ print("Valeur de freq_fin en dehors de root.mainloop() :", freq_fin)
 print("Valeur de nb_points en dehors de root.mainloop() :", nb_points)
 print("Valeur de voie_entree en dehors de root.mainloop() :", voie_entree)
 print("Valeur de amplitude_entree en dehors de root.mainloop() :", amplitude_entree)
+print("Valeur de voie_GBF en dehors de root.mainloop() :", voie_GBF)
 
 
 #--------------------{Récupération des ports}---------------------
@@ -228,8 +277,10 @@ for port in listePorts:
 #--------------------{Définition du signal d'entrée}---------------------
 
 
-GBF.write(":Source" + voie_entree + ":APPLy:sin")
-GBF.write(":Source" + voie_entree + ":VOLT " + amplitude_entree)
+GBF.write(f":Source{voie_entree}:APPLy:sin")
+GBF.write(f":Source{voie_entree}:VOLT {amplitude_entree}")
+GBF.write(f":Source{voie_entree}:frequence {freq_dep}")
+GBF.write(f":output{voie_GBF} ON") 
 
 #--------------------{Balayage des fréquences}---------------------
 
@@ -248,20 +299,35 @@ oscillo.read_termination = "\n"
 # 5.e-02, 1.e-01, 2.e-01, 5.e-01, 1.e+00, 2.e+00, 5.e+00, 1.e+01, 2.e+01, 5.e+01,
 # 1.e+02, 2.e+02, 5.e+02]
 
+oscillo.write(":AUTOSet")
+time.sleep(2)
 
 for freq in plage_freq:
-    GBF.write(":Source" + voie_entree + ":FREQ " + str(freq))
-    oscillo.write(":AUTOSet")
-    time.sleep(2)
+    
+    GBF.write(f":Source{voie_entree}:FREQ {freq}")
+    time.sleep(1)
+    
+    oscillo.write(f":MEASure:SOURce1 CH{voie_sortie}")
+    ampli = float(oscillo.query(":MEASure:PK2Pk?"))
+    
+    echelle_hori = float(oscillo.query(":timebase:scale?"))
+    echelle_vert = float(oscillo.query(f":channel{voie_sortie}:scale?"))
+    
+    if not (2/freq <= echelle_hori*10 <= 10/freq) or not(echelle_vert*2 <= ampli <= echelle_vert*3):
+        oscillo.write(":AUTOSet")
+        time.sleep(2)
 
-    oscillo.write(":MEASure:SOURce2 CH" + voie_entree)
+    oscillo.write(f":MEASure:SOURce1 CH{voie_entree}")
     tension_entree.append(float(oscillo.query(":MEASure:PK2Pk?")))
     freq_entree_oscillo.append(float(oscillo.query(":MEASure:FREQuency?")))
 
-    oscillo.write(":MEASure:SOURce1 CH" + var_test)
+    oscillo.write(f":MEASure:SOURce1 CH{voie_sortie}")
     tension_sortie.append(float(oscillo.query(":MEASure:PK2Pk?")))
-
+    
+    oscillo.write(f":MEASure:SOURce1 CH{voie_entree}")
+    oscillo.write(f":MEASure:SOURce2 CH{voie_sortie}")
     phase.append(float(oscillo.query(":MEASure:PHAse?")))
+
 
 print(freq_entree_oscillo)
 print(tension_entree)
