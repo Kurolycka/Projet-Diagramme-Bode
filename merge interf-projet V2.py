@@ -1,4 +1,4 @@
-import pyvisa
+#import pyvisa
 import time
 from numpy import *
 import matplotlib.pyplot as plt
@@ -152,54 +152,72 @@ root = Tk()
 root.title("Diagramme de Bode")
 
 style = ttk.Style()
-style.theme_use('alt')  
-style.configure('TButton', background='pink', foreground='black', borderradius=50, padding=10) 
-root.configure(bg='green')
+style.theme_use('alt')
+
+color_rgb_darkp = (25, 12, 24)
+color_html_darkp = "#%02x%02x%02x" % color_rgb_darkp
+
+
+color_rgb_purple = (247, 65, 143)
+color_html_purple = "#%02x%02x%02x" % color_rgb_purple
+
+#style.configure('TButton', background=color_html_purple, foreground='black') 
+
+style.configure('Titi.TButton', background=color_html_purple, foreground='black', relief ='raised', borderwidth=4)
+
+ttk.Style().configure('Custom.TLabel', foreground=color_html_darkp, font=("Times New Roman",12))
+
 
 frm = ttk.Frame(root, padding=10)
 frm.grid()
 
+
 #--------------------{Les widgets}---------------------
 
-ttk.Label(frm, text="Numéro de voie du signal d'entrée (Oscilloscope): ").grid(column=0, row=1)
+
+#Pour ajouter un espace avant les boutons :
+ttk.Label(frm, text="", style='Custom.TLabel').grid(column=0, row=1)
+
+
+ttk.Label(frm, text="Numéro de voie du signal d'entrée (Oscilloscope): ",style='Custom.TLabel').grid(column=0, row=2)
 voie_entree = IntVar()  # Variable pour stocker la valeur sélectionnée
 rdio1 = ttk.Radiobutton(frm, text="1", variable=voie_entree, value=1)
 rdio2 = ttk.Radiobutton(frm, text="2", variable=voie_entree, value=2)
-rdio1.grid(column=1, row=1)
-rdio2.grid(column=2, row=1)
+rdio1.grid(column=1, row=2)
+rdio2.grid(column=2, row=2)
 
-ttk.Label(frm, text="Numéro de voie du générateur : ").grid(column=0, row=2)
+ttk.Label(frm, text="Numéro de voie du générateur : ", style='Custom.TLabel').grid(column=0, row=3)
 voie_GBF = IntVar()  # Variable pour stocker la valeur sélectionnée
 rdio3 = ttk.Radiobutton(frm, text="1", variable=voie_GBF, value=1)
 rdio4 = ttk.Radiobutton(frm, text="2", variable=voie_GBF, value=2)
-rdio3.grid(column=1, row=2)
-rdio4.grid(column=2, row=2)
+rdio3.grid(column=1, row=3)
+rdio4.grid(column=2, row=3)
 
-ttk.Label(frm, text="Fréquence de départ (Hz) : ").grid(column=0, row=3)
+ttk.Label(frm, text="Fréquence de départ (Hz) : ", style='Custom.TLabel').grid(column=0, row=4)
 entry1 = ttk.Entry(frm)
-entry1.grid(column=1, row=3, columnspan=2)
+entry1.grid(column=1, row=4, columnspan=2)
 
-ttk.Label(frm, text="Fréquence de fin (Hz) : ").grid(column=0, row=4)
+ttk.Label(frm, text="Fréquence de fin (Hz) : ", style='Custom.TLabel').grid(column=0, row=5)
 entry2 = ttk.Entry(frm)
-entry2.grid(column=1, row=4, columnspan=3)
+entry2.grid(column=1, row=5, columnspan=3)
 
-ttk.Label(frm, text="Nombre de points : ").grid(column=0, row=5)
+ttk.Label(frm, text="Nombre de points : ", style='Custom.TLabel').grid(column=0, row=6)
 entry3 = ttk.Entry(frm)
-entry3.grid(column=1, row=5, columnspan=2)
+entry3.grid(column=1, row=6, columnspan=2)
 
-ttk.Label(frm, text="Amplitude du signal d'entrée (V) : ").grid(column=0, row=6)
+ttk.Label(frm, text="Amplitude du signal d'entrée (V) : ", style='Custom.TLabel').grid(column=0, row=7)
 entry5 = ttk.Entry(frm)
-entry5.grid(column=1, row=6, columnspan=2)
+entry5.grid(column=1, row=7, columnspan=2)
 
-ttk.Label(frm,text="Nombre d'échantillons utilisés pour le tracé : ").grid(column=0, row=7)
+ttk.Label(frm,text="Nombre d'échantillons utilisés pour le tracé : ", style='Custom.TLabel').grid(column=0, row=8)
 options_moyenne = ["2", "4","8","16","32","64","128","256"]
 moyenne_echantillon = StringVar()
 moyenne_echantillon_combobox=ttk.Combobox(frm, values=options_moyenne, textvariable=moyenne_echantillon)
-moyenne_echantillon_combobox.grid(column=1, row=7, columnspan=2)
+moyenne_echantillon_combobox.grid(column=1, row=8, columnspan=2)
 moyenne_echantillon_combobox.current(0)
 
 #Pour ajouter un espace avant les boutons :
-ttk.Label(frm, text="").grid(column=0, row=8)
+ttk.Label(frm, text="", style='Custom.TLabel').grid(column=0, row=9)
 
 
 #--------------------{fonctions pour les boutons}---------------------
@@ -217,9 +235,9 @@ def quit_program():
 #--------------------{Les boutons au bottom}---------------------
 
 
-ttk.Button(frm, text="Valider", command=get_text_and_destroy).grid(column=1, row=9)
-ttk.Button(frm, text="Aide", command=open_window).grid(column=0, row=9)
-ttk.Button(frm, text="Quitter", command=quit_program).grid(column=2, row=9)
+ttk.Button(frm, text="Valider", command=get_text_and_destroy, style='Titi.TButton').grid(column=1, row=10)
+ttk.Button(frm, text="Aide", command=open_window, style='Titi.TButton').grid(column=0, row=10)
+ttk.Button(frm, text="Quitter", command=quit_program, style='Titi.TButton').grid(column=2, row=10)
 
 
 root.mainloop()
