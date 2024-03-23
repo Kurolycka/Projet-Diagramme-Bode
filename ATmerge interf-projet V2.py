@@ -1,4 +1,9 @@
+<<<<<<< Updated upstream:ATmerge interf-projet V2.py
 # import pyvisa
+=======
+# %matplotlib qt
+import pyvisa
+>>>>>>> Stashed changes:merge interf-projet V2 - Copie.py
 import time
 from numpy import *
 import matplotlib.pyplot as plt
@@ -16,8 +21,18 @@ from tkinter import messagebox
 # remplacer pk2pk par amplitude 
 # faire attention si tension trop basse (en-dessous de 10 mV) arrêter les mesures car n'importe quoi
 # comparer avec la valeur théorique de la fréquence de coupure 
+<<<<<<< Updated upstream:ATmerge interf-projet V2.py
 
 # Précision 3% en vertical
+=======
+# sert à rien que on règle le trigger car l'autoset le fait 
+# essais marque le nombre d'essais pour un point, si il échoue 3 fois sur le même point il passe au point suivant
+# cela permet sur des mesures de point à problème de lui laisser l'occasion de réessayer pour si possible être plus
+# précis sur la courbe
+
+# Précision 3% en vertical
+# problème car à certains moments il arrivait pas à mesurer l'amplitude mettre dans cr
+>>>>>>> Stashed changes:merge interf-projet V2 - Copie.py
 
 
 # --------------------{Préparation des variables globales}---------------------
@@ -44,6 +59,11 @@ moyenne_echantillon = ""
 amplitude_max = ""
 # type d'échelle des fréquences pour le tracé
 echelle = ""
+<<<<<<< Updated upstream:ATmerge interf-projet V2.py
+=======
+# fréquence de coupure approximative ou non 
+frequence_coupure_case = ""
+>>>>>>> Stashed changes:merge interf-projet V2 - Copie.py
 
 # --------------------{Fonctions pour les widgets}---------------------
 
@@ -299,6 +319,18 @@ moyenne_echantillon_combobox.current(0)
 # Pour ajouter un espace avant les boutons :
 ttk.Label(frm, text="", style='Custom.TLabel').grid(column=0, row=10)
 
+<<<<<<< Updated upstream:ATmerge interf-projet V2.py
+=======
+# La case à cocher pour l'approximation de la fréquence de coupure :
+frequence_coupure_case = IntVar()
+checkbox = Checkbutton(frm, text="Affichage de l'approximation de la fréquence de coupure",
+                       variable=frequence_coupure_case, onvalue=True, offvalue=False, font=("Times New Roman", 12))
+checkbox.grid(column=0, row=11, columnspan=3)
+
+# Pour ajouter un espace avant les boutons :
+ttk.Label(frm, text="", style='Custom.TLabel').grid(column=0, row=12)
+
+>>>>>>> Stashed changes:merge interf-projet V2 - Copie.py
 
 # --------------------{fonctions pour les boutons}---------------------
 
@@ -350,8 +382,22 @@ print("Valeur de amplitude_entree en dehors de root.mainloop() :", amplitude_ent
 voie_GBF = voie_GBF.get()
 print("Valeur de voie_GBF en dehors de root.mainloop() :", voie_GBF)
 moyenne_echantillon = moyenne_echantillon.get()
+<<<<<<< Updated upstream:ATmerge interf-projet V2.py
 print("Valeur de moyenne_echantillon en dehors de root.mainloop() :", voie_GBF)
 print("Valeur de echelle en dehors de root.mainloop() :", echelle)
+=======
+print("Valeur de moyenne_echantillon :", voie_GBF)
+
+echelle = echelle.get()
+if echelle == 1:
+    echelle = "lin"
+else:
+    echelle = "log"
+print("Valeur de echelle :", echelle)
+
+frequence_coupure_case = frequence_coupure_case.get()
+print("Récupération de la checkbox :", frequence_coupure_case)
+>>>>>>> Stashed changes:merge interf-projet V2 - Copie.py
 
 # --------------------{Récupération des ports}---------------------
 
@@ -387,8 +433,13 @@ GBF.write(f":output{voie_GBF} ON")
 oscillo.write(f":ACQuire:MODe AVERage")
 oscillo.write(f":ACQuire:AVERage {moyenne_echantillon}")
 
+<<<<<<< Updated upstream:ATmerge interf-projet V2.py
 # On met le trigger et le couplage de l'oscillo en mode Alternatif pour ne pas prendre en compte les offsets
 oscillo.write(f":TRIGger:COUPle AC")
+=======
+oscillo.write(f":CHANnel1:COUPling AC")
+oscillo.write(f":CHANnel2:COUPling AC")
+>>>>>>> Stashed changes:merge interf-projet V2 - Copie.py
 
 # pour le coupling AC voir page 44
 
@@ -400,7 +451,7 @@ if echelle == "log":
     # logspace fait une echelle linéaire des puissances, il faut donc récupérer la puissance de 10 correspondante à la
     # freq de départ et de fin
     plage_freq = list(logspace(log10(freq_dep), log10(freq_fin), nb_points))
-elif echelle =="lin":
+elif echelle == "lin":
     plage_freq = list(linspace(freq_dep, freq_fin, nb_points))
 
 # on arrondit pour que les valeurs soient acceptées par le GBF
@@ -409,10 +460,21 @@ plage_freq = [round(i, 4) for i in plage_freq]
 print(plage_freq)
 
 # on crée les listes qui vont stocker nos mesures
+<<<<<<< Updated upstream:ATmerge interf-projet V2.py
 freq_entree_oscillo = []
 tension_entree = []
 tension_sortie = []
 phase = []
+=======
+Freq_entree_oscillo = []
+Err_freq_entree_oscillo = []
+Tension_entree = []
+Err_tension_entree = []
+Tension_sortie = []
+Err_tension_sortie = []
+Phase = []
+Err_phase = []
+>>>>>>> Stashed changes:merge interf-projet V2 - Copie.py
 
 oscillo.read_termination = "\n"
 
@@ -425,6 +487,46 @@ for freq in plage_freq:
     GBF.write(f":Source{voie_entree}:FREQ {freq}")
     # on attend un peu avant de faire les mesures
     time.sleep(1)
+<<<<<<< Updated upstream:ATmerge interf-projet V2.py
+=======
+    while essais < 3:
+        try:
+            print("ok")
+            # on récupère l'échelle horizontale de l'oscillo (commune aux deux channels)
+            echelle_hori = float(oscillo.query(":timebase:scale?"))
+
+            # on met la source de mesure sur le channel qui mesure la tension d'entrée et on récupère
+            # nos mesures et les échelles
+            oscillo.write(f":MEASure:SOURce1 CH{voie_entree}")
+            freq_entree_oscillo = oscillo.query(":MEASure:FREQuency?")
+            ampli_entree = oscillo.query(":MEASure:AMPlitude?")
+            echelle_vert_entree = float(oscillo.query(f":channel{voie_entree}:scale?"))
+
+            # on met la source de mesure sur le channel qui mesure la tension de sortie et on récupère
+            # nos mesures et les échelles
+            oscillo.write(f":MEASure:SOURce1 CH{voie_sortie}")
+            ampli_sortie = oscillo.query(":MEASure:AMPlitude?")
+            echelle_vert_sortie = float(oscillo.query(f":channel{voie_sortie}:scale?"))
+
+            # on met la source de mesure 1 sur le channel qui mesure la tension d'entrée et la deuxième sur le
+            # channel qui mesure la tension de sortie et on mesure le déphasage de la source 2 par rapport à la 1
+            oscillo.write(f":MEASure:SOURce1 CH{voie_entree}")
+            oscillo.write(f":MEASure:SOURce2 CH{voie_sortie}")
+            phase = oscillo.query(":MEASure:PHAse?")
+
+            freq_entree_oscillo = float(freq_entree_oscillo)
+            ampli_entree = float(ampli_entree)
+            ampli_sortie = float(ampli_sortie)
+            phase = float(phase)
+        except:
+            print("pas ok")
+            oscillo.write(":AUTOSet")
+            time.sleep(2)
+            essais = essais + 1
+            continue
+
+        break
+>>>>>>> Stashed changes:merge interf-projet V2 - Copie.py
 
     # on récupère l'échelle horizontale de l'oscillo (commune aux deux channels)
     echelle_hori = float(oscillo.query(":timebase:scale?"))
@@ -440,6 +542,7 @@ for freq in plage_freq:
 
     # Si le signal n'est pas entre 2 et 10 périodes de longueur ou s'il n'est pas contenu entre 2 et 3 fois l'échelle
     # verticale de la chaine de sortie
+<<<<<<< Updated upstream:ATmerge interf-projet V2.py
     if not (2 / freq <= echelle_hori * 10 <= 10 / freq) or not (echelle_vert * 2 <= ampli <= echelle_vert * 3):
         # on fait un autoset et on attend
         oscillo.write(":AUTOSet")
@@ -461,6 +564,25 @@ for freq in plage_freq:
     oscillo.write(f":MEASure:SOURce1 CH{voie_entree}")
     oscillo.write(f":MEASure:SOURce2 CH{voie_sortie}")
     phase.append(float(oscillo.query(":MEASure:PHAse?")))
+=======
+    if not (2 / freq <= echelle_hori * 10 <= 10 / freq) or not (
+            echelle_vert_sortie * 1.5 <= ampli_sortie <= echelle_vert_sortie * 2.5):
+        # on fait un autoset, on attend, et on refait les mesures
+        oscillo.write(":AUTOSet")
+        time.sleep(2)
+
+    Tension_entree.append(ampli_entree)
+    Err_tension_entree.append(ampli_entree * 0.03 + 0.1 * echelle_vert_entree + 1E-3)
+
+    Tension_sortie.append(ampli_sortie)
+    Err_tension_sortie.append(ampli_sortie * 0.03 + 0.1 * echelle_vert_sortie + 1E-3)
+
+    Freq_entree_oscillo.append(freq_entree_oscillo)
+    Err_freq_entree_oscillo.append(freq_entree_oscillo * 0.00001)
+
+    Phase.append(phase)
+    Err_phase.append(3)
+>>>>>>> Stashed changes:merge interf-projet V2 - Copie.py
 
 # vérif
 print(freq_entree_oscillo)
@@ -494,6 +616,44 @@ if echelle == "log":
     ax[1].set_xscale("log")
 ax[1].set_ylabel("Phase (°)")
 
+<<<<<<< Updated upstream:ATmerge interf-projet V2.py
+=======
+# Tracé des asymptotes :
+# Problème avec le fait que les asymptotes ne sont pas droites quand je passe en échelle semi-logarithmique et
+# que je peux pas passer en log log pour les asymptotes vu que les gains sont négatifs
+
+# if frequence_coupure_case==True:
+# Asymptote du haut :
+#   y1_haut=gain[0]
+#   y2_haut=gain[1]
+#   x1_haut=Freq_entree_oscillo[0]
+#   x2_haut=Freq_entree_oscillo[1]
+#   coeff_directeur_haut=(y1_haut-y2_haut)/(x1_haut-x2_haut)
+#   ordonnee_origine_haut=y1_haut-coeff_directeur_haut*x1_haut
+#   asymptote_haut=[coeff_directeur_haut*i+ordonnee_origine_haut for i in Freq_entree_oscillo]
+#   asymptote_haut=asymptote_haut
+#   ax[0].plot(plage_freq, asymptote_haut,"--",color="gray")
+#   ax[0].set_ylim(min(gain)-2, max(gain)+1)
+
+# Asymptote du bas :
+#   y1_bas=gain[len(gain)-2]
+#   y2_bas=gain[len(gain)-1]
+#   x1_bas=Freq_entree_oscillo[len(gain)-2]
+#   x2_bas=Freq_entree_oscillo[len(gain)-1]
+#   coeff_directeur_bas=(y1_bas-y2_bas)/(x1_bas-x2_bas)
+#   ordonnee_origine_bas=y1_bas-coeff_directeur_bas*x1_bas
+#   asymptote_bas=[coeff_directeur_bas*i+ordonnee_origine_bas for i in Freq_entree_oscillo]
+#   asymptote_bas=asymptote_bas
+#   ax[0].plot(plage_freq, asymptote_bas,"--",color="gray")
+
+#   freq_coup=(ordonnee_origine_bas-ordonnee_origine_haut)/(coeff_directeur_haut-coeff_directeur_bas)
+#   gain_coup=coeff_directeur_bas*freq_coup+ordonnee_origine_bas
+#   ax[0].scatter(freq_coup,gain_coup,color="red", label="fréquence de coupure")
+
+#   ax[0].text(freq_coup, gain_coup, f'({round(freq_coup,2)}, {round(gain_coup,2)})', fontsize=12, ha='right')
+#   ax[0].legend()
+
+>>>>>>> Stashed changes:merge interf-projet V2 - Copie.py
 plt.show()
 
 gestionnaire.close()
