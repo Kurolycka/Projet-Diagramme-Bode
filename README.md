@@ -5,7 +5,7 @@ Projet d'Acquisition des données 2, M1 Physique Numérique.
 
 Ce programme a été créé en se servant d'un oscilloscope et d'un GBF spécifiques. Effectivement si vous n'utilisez pas les mêmes les commandes de programmation pourront différer et mener à l'échec du programme. 
 
-**Pour l'oscilloscope** : GDS-1000B Series Digital Storage Oscilloscopes de Gwinstek
+**Pour l'oscilloscope** : GDS-1000B Series Digital Storage Oscilloscopes de Gwinstek <br>
 **Pour le générateur** : GDS-1000B Series Digital Storage Oscilloscopes de RIGOL
 
 ## Paramètres que vous pouvez choisir
