@@ -58,6 +58,13 @@ Si votre fréquence de fin (**freq_fin**) est comprise entre 3E7 Hz inclus et 6E
 
 **Quitter** : En cliquant sur ce bouton vous l'interface pour choisir vos paramètres se fermera et le programme arrêtera de s'exécuter. Si vous voulez recommencer il faudra relancer le programme.
 
+## Caractéristiques générales du programme
+
+-> Etant donné que vous cherchez à tracer un diagramme de Bode il vous est imposé que le signal d'entrée soit sinusoïdal. 
+-> Le couplage est en AC sur les deux voies. 
+-> Lorsqu'il est possible d'éviter un auto-set entre deux fréquences différentes cela est privilégié. Mais lorsque l'on a moins de 2 périodes sur l'échelle de temps ou bien plus de 10 périodes ou alors lorsque l'amplitude du signal n'est plus entre 1,5 carreaux et 2,5 carreaux un autoset se fera automatiquement pour des soucis de mesures. 
+-> Le premier autoset pour la première fréquence, qui lui n'est pas optionnel, impose le couplage et le niveau du trigger.
+
 ## Aide
 
 Si vous avez besoin d'aide ou de renseignements ou bien vous pouvez vous servir de ce README relativement complet, ou bien vous avez deux autres options.
