@@ -1,4 +1,4 @@
-#%matplotlib qt
+# %matplotlib qt
 import pyvisa
 import time
 from numpy import *
@@ -13,15 +13,13 @@ from tkinter import messagebox
 # Mettre dans le readme quelles références de machines utiliser.
 # Afficher les incertitudes 
 # comparer avec la valeur théorique de la fréquence de coupure 
-# sert à rien que on règle le trigger car l'autoset le fait 
+# sert à rien qu'on règle le trigger car l'autoset le fait
 # essais marque le nombre d'essais pour un point, si il échoue 3 fois sur le même point il passe au point suivant
 # cela permet sur des mesures de point à problème de lui laisser l'occasion de réessayer pour si possible être plus
-#précis sur la courbe
+# précis sur la courbe
 
 # Précision 3% en vertical
 # problème car à certains moments il arrivait pas à mesurer l'amplitude mettre dans cr
-
-
 
 
 # --------------------{Préparation des variables globales}---------------------
@@ -49,7 +47,7 @@ amplitude_max = ""
 # type d'échelle des fréquences pour le tracé
 echelle = ""
 # fréquence de coupure approximative ou non 
-frequence_coupure_case=""
+frequence_coupure_case = ""
 
 # --------------------{Fonctions pour les widgets}---------------------
 
@@ -188,7 +186,7 @@ def validate_all():
             amplitude_max = 5
         elif 3E+7 <= freq_fin < 6E+7:
             amplitude_max = 2.5
-    print(amplitude_max)
+
     if not validate_amplitude_entree():
         return False
     if not validate_nb_points():
@@ -304,9 +302,10 @@ moyenne_echantillon_combobox.current(0)
 # Pour ajouter un espace avant les boutons :
 ttk.Label(frm, text="", style='Custom.TLabel').grid(column=0, row=10)
 
-#La case à cocher pour l'approximation de la fréquence de coupure :
-frequence_coupure_case=IntVar()
-checkbox=Checkbutton(frm, text="Affichage de l'approximation de la fréquence de coupure", variable=frequence_coupure_case, onvalue=True, offvalue=False, font=("Times New Roman",12))
+# La case à cocher pour l'approximation de la fréquence de coupure :
+frequence_coupure_case = IntVar()
+checkbox = Checkbutton(frm, text="Affichage de l'approximation de la fréquence de coupure",
+                       variable=frequence_coupure_case, onvalue=True, offvalue=False, font=("Times New Roman", 12))
 checkbox.grid(column=0, row=11, columnspan=3)
 
 # Pour ajouter un espace avant les boutons :
@@ -346,9 +345,10 @@ root.mainloop()
 
 # --------------------{Vérification des variables globales}---------------------
 
-print("Valeur de freq_dep :", freq_dep)
-print("Valeur de freq_fin :", freq_fin)
-print("Valeur de nb_points :", nb_points)
+print("Voici les paramètres sélectionné :")
+print(" - Valeur de freq_dep :", freq_dep)
+print(" - Valeur de freq_fin :", freq_fin)
+print(" - Valeur de nb_points :", nb_points)
 
 voie_entree = voie_entree.get()  # Je récupère la valeur de voie_entree
 
@@ -357,26 +357,26 @@ if voie_entree == 1:
     voie_sortie = 2
 else:
     voie_sortie = 1
-print("Valeur de voie_entree :", voie_entree)
-print("Valeur de voie_sortie :", voie_sortie)
+print(" - Valeur de voie_entree :", voie_entree)
+print(" - Valeur de voie_sortie :", voie_sortie)
 
-print("Valeur de amplitude_entree  :", amplitude_entree)
+print(" - Valeur de amplitude_entree  :", amplitude_entree)
 
 voie_GBF = voie_GBF.get()
-print("Valeur de voie_GBF :", voie_GBF)
+print(" - Valeur de voie_GBF :", voie_GBF)
 
 moyenne_echantillon = moyenne_echantillon.get()
-print("Valeur de moyenne_echantillon :", voie_GBF)
+print(" - Valeur de moyenne_echantillon :", voie_GBF)
 
-echelle=echelle.get()
-if echelle==1:
-    echelle="lin"
+echelle = echelle.get()
+if echelle == 1:
+    echelle = "lin"
 else:
-    echelle="log"
-print("Valeur de echelle :", echelle)
+    echelle = "log"
+print(" - Valeur de echelle :", echelle)
 
-frequence_coupure_case=frequence_coupure_case.get()
-print("Récupération de la checkbox :", frequence_coupure_case)
+frequence_coupure_case = frequence_coupure_case.get()
+print(" - Affichage de la fréquence de coupure ? :", frequence_coupure_case)
 
 # --------------------{Récupération des ports}---------------------
 
@@ -412,7 +412,7 @@ GBF.write(f":output{voie_GBF} ON")
 oscillo.write(f":ACQuire:MODe AVERage")
 oscillo.write(f":ACQuire:AVERage {moyenne_echantillon}")
 
-
+# On met le couplage des chaîne en AC, ce qui permet à l'utilisateur de mettre un offset sans conséquence sur les calculs
 oscillo.write(f":CHANnel1:COUPling AC")
 oscillo.write(f":CHANnel2:COUPling AC")
 
@@ -426,13 +426,11 @@ if echelle == "log":
     # logspace fait une echelle linéaire des puissances, il faut donc récupérer la puissance de 10 correspondante à la
     # freq de départ et de fin
     plage_freq = list(logspace(log10(freq_dep), log10(freq_fin), nb_points))
-elif echelle =="lin":
+elif echelle == "lin":
     plage_freq = list(linspace(freq_dep, freq_fin, nb_points))
 
 # on arrondit pour que les valeurs soient acceptées par le GBF
 plage_freq = [round(i, 4) for i in plage_freq]
-# vérif
-print(plage_freq)
 
 # on crée les listes qui vont stocker nos mesures
 Freq_entree_oscillo = []
@@ -443,7 +441,6 @@ Tension_sortie = []
 Err_tension_sortie = []
 Phase = []
 Err_phase = []
-
 
 oscillo.read_termination = "\n"
 
@@ -459,141 +456,145 @@ for freq in plage_freq:
     time.sleep(1)
     while essais < 3:
         try:
-            print("ok")
             # on récupère l'échelle horizontale de l'oscillo (commune aux deux channels)
             echelle_hori = float(oscillo.query(":timebase:scale?"))
-            
+
             # on met la source de mesure sur le channel qui mesure la tension d'entrée et on récupère
             # nos mesures et les échelles
             oscillo.write(f":MEASure:SOURce1 CH{voie_entree}")
             freq_entree_oscillo = oscillo.query(":MEASure:FREQuency?")
             ampli_entree = oscillo.query(":MEASure:AMPlitude?")
             echelle_vert_entree = float(oscillo.query(f":channel{voie_entree}:scale?"))
-            
+
             # on met la source de mesure sur le channel qui mesure la tension de sortie et on récupère
             # nos mesures et les échelles
             oscillo.write(f":MEASure:SOURce1 CH{voie_sortie}")
             ampli_sortie = oscillo.query(":MEASure:AMPlitude?")
             echelle_vert_sortie = float(oscillo.query(f":channel{voie_sortie}:scale?"))
-            
-            # on met la source de mesure 1 sur le channel qui mesure la tension d'entrée et la deuxième sur le channel qui
-            # mesure la tension de sortie et on mesure le déphasage de la source 2 par rapport à la 1
+
+            # on met la source de mesure 1 sur le channel qui mesure la tension d'entrée et la deuxième sur le
+            # channel qui mesure la tension de sortie et on mesure le déphasage de la source 2 par rapport à la 1
             oscillo.write(f":MEASure:SOURce1 CH{voie_entree}")
             oscillo.write(f":MEASure:SOURce2 CH{voie_sortie}")
             phase = oscillo.query(":MEASure:PHAse?")
-    
-    
+
             freq_entree_oscillo = float(freq_entree_oscillo)
             ampli_entree = float(ampli_entree)
             ampli_sortie = float(ampli_sortie)
             phase = float(phase)
         except:
-            print("pas ok")
             oscillo.write(":AUTOSet")
             time.sleep(2)
             essais = essais + 1
             continue
-        
+
         break
 
     if ampli_sortie <= 50E-3 or essais == 3:
+        print(f"La mesure de la fréquence {freq} à trop échoué, passage à la fréquence suivante.")
         continue
 
-    # Si le signal n'est pas entre 2 et 10 périodes de longueur ou s'il n'est pas contenu entre 2 et 3 fois l'échelle
+    # Si le signal n'est pas entre 2 et 10 périodes de longueur ou s'il n'est pas contenu entre 2 et 2.5 fois l'échelle
     # verticale de la chaine de sortie
-    if not (2 / freq <= echelle_hori * 10 <= 10 / freq) or not (echelle_vert_sortie * 1.5 <= ampli_sortie <= echelle_vert_sortie * 2.5) :
-        # on fait un autoset, on attend, et on refait les mesures
+    if not (2 / freq <= echelle_hori * 10 <= 10 / freq) or not (
+            echelle_vert_sortie * 1.5 <= ampli_sortie <= echelle_vert_sortie * 2.5):
+        # on fait un autoset et on attend
         oscillo.write(":AUTOSet")
         time.sleep(2)
 
-
+    # On ajoute les valeurs aux listes et on calcule leurs incertitudes
     Tension_entree.append(ampli_entree)
-    Err_tension_entree.append(ampli_entree*0.03+0.1*echelle_vert_entree+1E-3)
-    
+    Err_tension_entree.append(ampli_entree * 0.03 + 0.1 * echelle_vert_entree + 1E-3)
+
     Tension_sortie.append(ampli_sortie)
-    Err_tension_sortie.append(ampli_sortie*0.03+0.1*echelle_vert_sortie+1E-3)
-    
+    Err_tension_sortie.append(ampli_sortie * 0.03 + 0.1 * echelle_vert_sortie + 1E-3)
+
     Freq_entree_oscillo.append(freq_entree_oscillo)
-    Err_freq_entree_oscillo.append(freq_entree_oscillo*0.00001)
+    Err_freq_entree_oscillo.append(freq_entree_oscillo * 0.00001)
 
     Phase.append(phase)
     Err_phase.append(3)
 
-    
-
-# vérif
-print(Freq_entree_oscillo)
-print(Err_freq_entree_oscillo)
-
-print(Tension_entree)
-print(Err_tension_entree)
-
-print(Tension_sortie)
-print(Err_tension_sortie)
-
-print(Phase)
-print(Err_phase)
-
 # --------------------{Calculs et tracé}---------------------
 
 # On calcule le gain avec des array numpy
+Freq_entree_oscillo = array(Freq_entree_oscillo)
 Tension_entree = array(Tension_entree)
 Tension_sortie = array(Tension_sortie)
+Phase = array(Phase)
 
-gain = 20 * log(abs(Tension_sortie / Tension_entree))
-print(gain)
+Err_freq_entree_oscillo = array(Err_freq_entree_oscillo)
+Err_tension_entree = array(Err_tension_entree)
+Err_tension_sortie = array(Err_tension_sortie)
+Err_phase = array(Err_phase)
 
-# On trace le gain et le déphasage
-fig, ax = plt.subplots(2, 1)
+Gain = 20 * log(abs(Tension_sortie / Tension_entree))
+print(Gain)
+Err_gain = (20 / log(10)) * ((Err_tension_sortie / Tension_sortie) + (Err_tension_entree / Tension_entree))
+
+# On trace le gain et le déphasage avec les incertitudes
+fig, ax = plt.subplots(2, 1, figsize=(12, 10))
 fig.suptitle("Diagramme de Bode")
 
-ax[0].plot(Freq_entree_oscillo, gain, color="purple")
-# ax[0].set_title("Gain en fonction de la fréquence")
+ax[0].plot(Freq_entree_oscillo, Gain, color="purple")
+ax[0].fill_between(Freq_entree_oscillo, Gain - Err_gain, Gain + Err_gain, color="purple", alpha=0.2)
+ax[0].grid(which="major", color="gainsboro")
+ax[0].grid(which="minor", color="gainsboro", ls=":")
+ax[0].minorticks_on()
 ax[0].set_xlabel("Fréquence (Hz)")
 if echelle == "log":
     ax[0].set_xscale("log")
 ax[0].set_ylabel("Gain (dB)")
+
 ax[1].plot(Freq_entree_oscillo, Phase, color="orange")
-# ax[1].set_title("Phase en fonction de la fréquence")
+ax[1].fill_between(Freq_entree_oscillo, Phase - Err_phase, Phase + Err_phase, color="orange", alpha=0.2)
+ax[1].grid(which="major", color="gainsboro")
+ax[1].grid(which="minor", color="gainsboro", ls=":")
+ax[1].minorticks_on()
 ax[1].set_xlabel("Fréquence (Hz)")
 if echelle == "log":
     ax[1].set_xscale("log")
 ax[1].set_ylabel("Phase (°)")
 
-#Tracé des asymptotes :
-#Problème avec le fait que les asymptotes ne sont pas droites quand je passe en échelle semi-logarithmique et
-#que je peux pas passer en log log pour les asymptotes vu que les gains sont négatifs
-    
-#if frequence_coupure_case==True:
-    #Asymptote du haut :
- #   y1_haut=gain[0]
- #   y2_haut=gain[1]
- #   x1_haut=Freq_entree_oscillo[0]
- #   x2_haut=Freq_entree_oscillo[1]
- #   coeff_directeur_haut=(y1_haut-y2_haut)/(x1_haut-x2_haut)
- #   ordonnee_origine_haut=y1_haut-coeff_directeur_haut*x1_haut
- #   asymptote_haut=[coeff_directeur_haut*i+ordonnee_origine_haut for i in Freq_entree_oscillo]
- #   asymptote_haut=asymptote_haut
- #   ax[0].plot(plage_freq, asymptote_haut,"--",color="gray")
- #   ax[0].set_ylim(min(gain)-2, max(gain)+1)
-    
-    #Asymptote du bas :
- #   y1_bas=gain[len(gain)-2]
- #   y2_bas=gain[len(gain)-1]
- #   x1_bas=Freq_entree_oscillo[len(gain)-2]
- #   x2_bas=Freq_entree_oscillo[len(gain)-1]
- #   coeff_directeur_bas=(y1_bas-y2_bas)/(x1_bas-x2_bas)
- #   ordonnee_origine_bas=y1_bas-coeff_directeur_bas*x1_bas
- #   asymptote_bas=[coeff_directeur_bas*i+ordonnee_origine_bas for i in Freq_entree_oscillo]
- #   asymptote_bas=asymptote_bas
- #   ax[0].plot(plage_freq, asymptote_bas,"--",color="gray")
-    
- #   freq_coup=(ordonnee_origine_bas-ordonnee_origine_haut)/(coeff_directeur_haut-coeff_directeur_bas)
- #   gain_coup=coeff_directeur_bas*freq_coup+ordonnee_origine_bas
- #   ax[0].scatter(freq_coup,gain_coup,color="red", label="fréquence de coupure")
-    
- #   ax[0].text(freq_coup, gain_coup, f'({round(freq_coup,2)}, {round(gain_coup,2)})', fontsize=12, ha='right')
- #   ax[0].legend()
+if frequence_coupure_case:
+    ax[0].axhline(y=-3, ls="--", color="m")
+
+
+
+# Tracé des asymptotes :
+# Problème avec le fait que les asymptotes ne sont pas droites quand je passe en échelle semi-logarithmique et
+# que je peux pas passer en log log pour les asymptotes vu que les gains sont négatifs
+
+# if frequence_coupure_case==True:
+# Asymptote du haut :
+#   y1_haut=gain[0]
+#   y2_haut=gain[1]
+#   x1_haut=Freq_entree_oscillo[0]
+#   x2_haut=Freq_entree_oscillo[1]
+#   coeff_directeur_haut=(y1_haut-y2_haut)/(x1_haut-x2_haut)
+#   ordonnee_origine_haut=y1_haut-coeff_directeur_haut*x1_haut
+#   asymptote_haut=[coeff_directeur_haut*i+ordonnee_origine_haut for i in Freq_entree_oscillo]
+#   asymptote_haut=asymptote_haut
+#   ax[0].plot(plage_freq, asymptote_haut,"--",color="gray")
+#   ax[0].set_ylim(min(gain)-2, max(gain)+1)
+
+# Asymptote du bas :
+#   y1_bas=gain[len(gain)-2]
+#   y2_bas=gain[len(gain)-1]
+#   x1_bas=Freq_entree_oscillo[len(gain)-2]
+#   x2_bas=Freq_entree_oscillo[len(gain)-1]
+#   coeff_directeur_bas=(y1_bas-y2_bas)/(x1_bas-x2_bas)
+#   ordonnee_origine_bas=y1_bas-coeff_directeur_bas*x1_bas
+#   asymptote_bas=[coeff_directeur_bas*i+ordonnee_origine_bas for i in Freq_entree_oscillo]
+#   asymptote_bas=asymptote_bas
+#   ax[0].plot(plage_freq, asymptote_bas,"--",color="gray")
+
+#   freq_coup=(ordonnee_origine_bas-ordonnee_origine_haut)/(coeff_directeur_haut-coeff_directeur_bas)
+#   gain_coup=coeff_directeur_bas*freq_coup+ordonnee_origine_bas
+#   ax[0].scatter(freq_coup,gain_coup,color="red", label="fréquence de coupure")
+
+#   ax[0].text(freq_coup, gain_coup, f'({round(freq_coup,2)}, {round(gain_coup,2)})', fontsize=12, ha='right')
+#   ax[0].legend()
 
 plt.show()
 
