@@ -6,6 +6,7 @@ Un diagramme de Bode représente la réponse en fréquence d'un système, par ex
 Ce programme vous donnera au final un diagramme de gain avec le gain du système en décibels (dB) en fonction de la fréquence en échelle linéaire ou logarithmique (au choix). Ainsi qu'un diagramme du déphasage du système (en °) en fonction de la fréquence en échelle linéaire ou logarithmique (au choix). 
 
 :small_blue_diamond: Pour exécuter ce programme il n'est nécessaire de télécharger que le fichier python contenu dans ce github et rien d'autre.
+:small_blue_diamond: : Veillez quand même à songer à allumer les appareils avant de lancer le programme.
 
 ## :pen: Auteurs du programme 
 
