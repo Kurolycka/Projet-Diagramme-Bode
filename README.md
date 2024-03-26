@@ -30,7 +30,7 @@ Cette fréquence doit être comprise entre 1E-6 et 3E7 Hz pour respecter les lim
 :warning: Il faut aussi faire attention aux limitations de votre circuit de manière à ne pas le cramer.
 
 **freq_fin** : Correspond à la fréquence de fin par laquelle vous voulez finir le balayage des fréquences pour le diagramme de Bode. Elle est exprimée en Hz. <br>
-Cette fréquence doit être strictement plus grande que **freq_dep** et inférieur à 3E7 Hz (pour les limitations du GBF). Cela doit également être un nombre, peu importe qu'il soit entier ou non. Si ces conditions ne sont pas respectées un message d'erreur s'affichera et vous ne pourrez pas continuer avec le tracé du graphe sans changer vos valeurs.
+Cette fréquence doit être strictement plus grande que **freq_dep** et inférieur à 3E7 Hz (pour les limitations du GBF). Cela doit également être un nombre, peu importe qu'il soit entier ou non. Si ces conditions ne sont pas respectées un message d'erreur s'affichera et vous ne pourrez pas continuer avec le tracé du graphe sans changer vos valeurs. <br>
 :warning: Il faut aussi faire attention aux limitations de votre circuit de manière à ne pas le cramer.
 
 **nb_points** : Correspond au nombre de points voulu sur le diagramme de Bode. Plus le nombre (sans dimension) choisi est grand plus le diagramme de Bode est précis mais aussi plus il est long à tracer. <br>
@@ -42,7 +42,7 @@ Une estimation du temps maximal que peut prendre la mesure en fonction du nombre
 **voie_GBF** : Correspond à la voie du GBF qui va généré l'output du signal et sur laquelle est branchée votre câble rejoignant votre circuit. Cela peut être 1 ou 2 que vous choisirez à l'aide de boutons radios.
 
 **amplitude_entree** : L'amplitude désirée pour votre signal d'entrée. Elle est exprimée en V. <br>
-Cette amplitude doit être comprise entre 2.5E-3 V et **amplitude_max** pour respecter les limitations du GBF. Cela doit également être un nombre, peu importe qu'il soit entier ou non. Si ces conditions ne sont pas respectées un message d'erreur s'affichera et vous ne pourrez pas continuer avec le tracé du graphe sans changer vos valeurs.
+Cette amplitude doit être comprise entre 2.5E-3 V et **amplitude_max** pour respecter les limitations du GBF. Cela doit également être un nombre, peu importe qu'il soit entier ou non. Si ces conditions ne sont pas respectées un message d'erreur s'affichera et vous ne pourrez pas continuer avec le tracé du graphe sans changer vos valeurs. <br>
 :warning: Il faut aussi faire attention aux limitations de votre circuit de manière à ne pas le cramer.
 
 **moyenne_echantillon** : Le nombre d'échantillons que vous choisissez pour faire une moyenne et mesurer le signal. Il y a plusieurs puissances de 2 au choix : 2, 4, 8, 16, 32, 64, 128 ou 256. Vous en choisirez une à l'aide d'un menu déroulant. <br>
