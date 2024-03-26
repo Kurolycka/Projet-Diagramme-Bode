@@ -109,7 +109,7 @@ Ce fichier s'enregistrera dans le même dossier où votre programme est enregist
 Le fichier aura le nom que vous lui donnerez dans le champ de saisi "Nom pour l'enregistrement du fichier" avec une extension txt qui se met automatiquement. Si vous ne choisissez pas de nom pour le fichier, ce dernier s'enregistrera tout de même sous le nom "Diagramme_Bode.txt" si vous cochez la case pour enregistrer. Cependant il faut faire attention car la prochaine fois que vous enregistrerez un fichier sans choisir de nom il remplacera le précédent du même nom "Diagramme_Bode.txt". Il est donc conseillé de choisir un nom à tous vos fichiers. <br>
 Nous avons choisit de faire le choix de l'écrasement pour éviter de polluer l'ordinateur avec par exemple des "Diagramme_Bode1.txt", "Diagramme_Bode2.txt", "Diagramme_Bode3.txt"... etc. Cela force ainsi l'utilisateur à nommer ses fichiers et à terme à moins s'y perdre.
 
-Pour faciliter la récupération des données dans par exemple un tableur csv nous avons fait en sorte que les données du tableau soient alignées pour en faciliter la séparation. 
+Pour faciliter la récupération des données dans par exemple un tableur csv nous avons fait en sorte que les données du tableau soient alignées et qu'il y ait un séparateur (ici | ) pour en faciliter la séparation. 
 
 ## :books: Modules utilisés
 
