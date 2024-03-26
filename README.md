@@ -92,7 +92,7 @@ Il n'est pas important que vous mettiez des points ou des virgules comme sépara
 :small_blue_diamond: Si l'amplitude du signal de sortie est plus petite ou égale à 50mV alors on ne fera pas la mesure pour cette fréquence. En effet l'incertitude devient alors trop grande par rapport à la valeur et cela fausserait complètement le diagramme. <br>
 :small_blue_diamond: Sur les points à problèmes, où l'oscilloscope a du mal à faire des mesures (signal trop faible ou autre), le programme tente 3 fois de faire les mesure et si il échoue les 3 fois alors il passe à la fréquence suivante sans prendre en compte celle pour laquelle il n'a pas réussi à faire les mesures. 
 
-## Trigger
+## :pushpin: Trigger
 
 L'utilisateur a le choix de choisir un trigger externe ou non. Dans ce cas il a besoin de brancher la voie "EXT TRIG" de l'oscillateur avec la voie "CH1/Sync/Ext Mod/Trig/FSK" à l'arrière du GBF ("CH2/Sync/Ext Mod/Trig/FSK" si l'output est en CH2). 
 
