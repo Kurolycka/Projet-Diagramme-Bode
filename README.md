@@ -45,6 +45,14 @@ Si votre fréquence de fin (**freq_fin**) est strictement inférieure à 1E7 Hz 
 Si votre fréquence de fin (**freq_fin**) est comprise entre 1E7 Hz inclus et 3E7 Hz exclus alors elle sera de 5V.
 Si votre fréquence de fin (**freq_fin**) est comprise entre 3E7 Hz inclus et 6E7Hz exclus alors elle sera de 2,5V.
 
+## Boutons de l'interface
+
+**Aide** : En cliquant sur ce bouton vous ouvres une nouvelle fenêtre que vous pouvez garder en parallèle et qui contient des renseignements supplémentaires sur les paramètres à choisir et qui contient le lien vers le github contenant ce README.
+
+**Valider** : En cliquant sur ce bouton, si tous vos paramètres renseignés respectent les conditions, un pop-up s'ouvre et vous renseigne sur le temps maximal que peut prendre la mesure et vous demande si vous voulez tout de même procéder. Si c'est le cas alors l'interface pour choisir vos paramètres disparaîtra, les mesures s'effectueront et une nouvelle fenêtre contenant le graphique s'affichera. Vous pourrez alors zoomer sur ce graphe ou dézoomer à volonté ou bien même l'enregistrer.
+
+**Quitter** : En cliquant sur ce bouton vous l'interface pour choisir vos paramètres se fermera et le programme arrêtera de s'exécuter. Si vous voulez recommencer il faudra relancer le programme.
+
 ## Aide
 
 Si vous avez besoin d'aide ou de renseignements ou bien vous pouvez vous servir de ce README relativement complet, ou bien vous avez deux autres options.
