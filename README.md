@@ -42,7 +42,8 @@ Une estimation du temps maximal que peut prendre la mesure en fonction du nombre
 **amplitude_entree** : L'amplitude désirée pour votre signal d'entrée. Elle est exprimée en V. <br>
 Cette amplitude doit être comprise entre 2.5E-3 V et **amplitude_max** pour respecter les limitations du GBF. Cela doit également être un nombre, peu importe qu'il soit entier ou non. Si ces conditions ne sont pas respectées un message d'erreur s'affichera et vous ne pourrez pas continuer avec le tracé du graphe sans changer vos valeurs.
 
-**moyenne_echantillon** : Le nombre d'échantillons que vous choisissez pour faire une moyenne et mesurer le signal. Il y a plusieurs puissances de 2 au choix : 2, 4, 8, 16, 32, 64, 128 ou 256. Vous en choisirez une à l'aide d'un menu déroulant. 
+**moyenne_echantillon** : Le nombre d'échantillons que vous choisissez pour faire une moyenne et mesurer le signal. Il y a plusieurs puissances de 2 au choix : 2, 4, 8, 16, 32, 64, 128 ou 256. Vous en choisirez une à l'aide d'un menu déroulant. <br>
+Il peut être intéressant de jouer sur ce paramètre si vous avez des signaux très faibles (en l'augmentant). 
 
 **echelle** : Correspond à l'échelle du graphique vous choisissez. Ou bien vous aurez un graphe final en échelle linéaire ou bien en échelle semi-logarithmique avec l'échelle des fréquences en échelle logarithmique sur le diagramme du gain. Il est conseillé de choisir l'échelle semi-logarithmique pour une meilleure practicité de lecture mais le choix est laissé à l'utilisateur. <br>
 Vous ferez votre choix à l'aide de boutons radios. 
@@ -84,7 +85,8 @@ Il n'est pas important que vous mettiez des points ou des virgules comme sépara
 :small_blue_diamond: Lorsqu'il est possible d'éviter un auto-set entre deux fréquences différentes cela est privilégié. Mais lorsque l'on a moins de 2 périodes sur l'échelle de temps ou bien plus de 10 périodes ou alors lorsque l'amplitude du signal n'est plus entre 1,5 divisions et 2,5 divisions un autoset se fera automatiquement pour des soucis de mesures. <br>
 :small_blue_diamond: Le premier autoset pour la première fréquence n'est pas optionnel. <br>
 :small_blue_diamond: Les incertitudes sont affichées sur le graphe final. Si vous n'arrivez pas à les voir c'est que l'incertitude est trop petite. Ces incertitudes sont calculées à l'aide des incertitudes liées à l'oscilloscope (de l'ordre de 3% pour le gain et de 3° pour la phase). <br>
-:small_blue_diamond: La phase est comprise entre 0 et 180°.
+:small_blue_diamond: La phase est comprise entre 0 et 180°. <br>
+:small_blue_diamond: Si l'amplitude du signal de sortie est plus petite ou égale à 50mV alors on ne fera pas la mesure pour cette fréquence. En effet l'incertitude devient alors trop grande par rapport à la valeur et cela fausserait complètement le diagramme. 
 
 ## Trigger
 
