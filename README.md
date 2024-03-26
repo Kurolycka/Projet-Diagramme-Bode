@@ -111,6 +111,8 @@ Nous avons choisit de faire le choix de l'écrasement pour éviter de polluer l'
 
 Pour faciliter la récupération des données dans par exemple un tableur csv nous avons fait en sorte que les données du tableau soient alignées et qu'il y ait un séparateur (ici | ) pour en faciliter la séparation. 
 
+Il est nécessaire que le nom du fichier soient des valeurs alphanumériques (pas de "/" et compagnie) sinon le fichier ne s'enregistrera pas. 
+
 ## :books: Modules utilisés
 
 Les modules utilisés lors de l'éxécution de ce programme sont les suivants : **pyvisa**, **time**, **numpy**, **matplotlib.pyplot**, **sys**, **tkinter**. 
