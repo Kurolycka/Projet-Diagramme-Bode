@@ -50,6 +50,9 @@ Vous ferez votre choix à l'aide de boutons radios.
 **frequence_coupure_case** : L'utilisateur peut choisir ou non d'afficher une droite à -3dB sur le graphe final du gain. Cela peut aider à évaluer la fréquence de coupure dans le cas de circuits simples. Attention cela ne vous aidra pas dans le cas de filtres d'ordre élevé, de filtres résonants, de filtres non linéaires ou bien de filtres spéciaux (Butterworth, Chevyshev, etc...). <br>
 Vous pouvez choisir de l'afficher grâce à une case à cocher.
 
+**trigger_externe** = L'utilisateur peut choisir d'avoir un trigger externe si cela peut l'aider à avoir des mesures plus précises.
+Vous ferez votre choix à l'aide de boutons radios. 
+
 Il n'est pas important que vous mettiez des points ou des virgules comme séparateurs pour les nombres, "300.7" et "300,7" par exemple fonctionneront de la même manière.
 
 ## :lock: Paramètres imposés
@@ -73,9 +76,14 @@ Il n'est pas important que vous mettiez des points ou des virgules comme sépara
 
 :small_blue_diamond: Etant donné que vous cherchez à tracer un diagramme de Bode il vous est imposé que le signal d'entrée soit sinusoïdal. <br>
 :small_blue_diamond: Le couplage est en AC sur les deux voies. <br>
-:small_blue_diamond: Lorsqu'il est possible d'éviter un auto-set entre deux fréquences différentes cela est privilégié. Mais lorsque l'on a moins de 2 périodes sur l'échelle de temps ou bien plus de 10 périodes ou alors lorsque l'amplitude du signal n'est plus entre 1,5 carreaux et 2,5 carreaux un autoset se fera automatiquement pour des soucis de mesures. <br>
-:small_blue_diamond: Le premier autoset pour la première fréquence, qui lui n'est pas optionnel, impose le couplage et le niveau du trigger. <br>
+:small_blue_diamond: Lorsqu'il est possible d'éviter un auto-set entre deux fréquences différentes cela est privilégié. Mais lorsque l'on a moins de 2 périodes sur l'échelle de temps ou bien plus de 10 périodes ou alors lorsque l'amplitude du signal n'est plus entre 1,5 divisions et 2,5 divisions un autoset se fera automatiquement pour des soucis de mesures. <br>
+:small_blue_diamond: Le premier autoset pour la première fréquence n'est pas optionnel.
 :small_blue_diamond: Les incertitudes sont affichées sur le graphe final. Si vous n'arrivez pas à les voir c'est que l'incertitude est trop petite. Ces incertitudes sont calculées à l'aide des incertitudes liées à l'oscilloscope (de l'ordre de 3% pour le gain et de 3° pour la phase).
+:small_blue_diamond: La phase est comprise entre 0 et 180°.
+
+## Trigger
+
+
 
 ## :books: Modules utilisés
 
