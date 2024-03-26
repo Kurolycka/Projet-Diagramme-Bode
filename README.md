@@ -99,7 +99,7 @@ L'utilisateur a le choix de choisir un trigger externe ou non. Dans ce cas il a 
 :small_blue_diamond: Dans le cas où l'utilisateur choisit un trigger externe le niveau du trigger sera automatiquement mis à TTL (Transistor-Transistor Logic). <br>
 :small_blue_diamond: Dans le cas où l'utilisateur ne choisit pas un trigger externe la source du trigger sera le signal d'entrée et son niveau sera mis à 0. 
 
-## Enregistrement
+## :floppy_disk: Enregistrement
 
 Il est possible d'enregistrer un fichier avec les données du diagramme de Bode, pour cela il faut cliquer sur la case "Enregistrer le fichier des données". <br>
 Dans ce fichier seront : une en-tête avec les paramètres qui ont été utilisés (la plage de fréquence et l'échelle avec laquelle elle a été balayée, l'amplitude d'entrée choisie et le nombre de points choisis), puis un tableau avec une ligne d'étiquettes contenant les fréquences, l'incertitude des fréquences, les gains, l'incertitude des gains, les phases et les incertitudes des phases. 
