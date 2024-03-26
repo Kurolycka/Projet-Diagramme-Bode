@@ -5,7 +5,7 @@ Ce programme sert à la réalisation d'un diagramme de Bode à partir d'un oscil
 Un diagramme de Bode représente la réponse en fréquence d'un système, par exemple un système linéaire comme un filtre ou encore un amplificateur. 
 Ce programme vous donnera au final un diagramme de gain avec le gain du système en décibels (dB) en fonction de la fréquence en échelle linéaire ou logarithmique (au choix). Ainsi qu'un diagramme du déphasage du système (en °) en fonction de la fréquence en échelle linéaire ou logarithmique (au choix). 
 
-Pour exécuter ce programme il n'est nécessaire de télécharger que le fichier python contenu dans ce github et rien d'autre.
+:small_blue_diamond: Pour exécuter ce programme il n'est nécessaire de télécharger que le fichier python contenu dans ce github et rien d'autre.
 
 ## Auteurs du programme 
 
@@ -76,7 +76,7 @@ Si votre fréquence de fin (**freq_fin**) est comprise entre 3E7 Hz inclus et 6E
 -> Le premier autoset pour la première fréquence, qui lui n'est pas optionnel, impose le couplage et le niveau du trigger. <br>
 -> Les incertitudes sont affichées sur le graphe final. Si vous n'arrivez pas à les voir c'est qu'il y a trop de points sur votre graphe pour qu'elles soient affichées correctement. Ces incertitudes sont calculées à l'aide des incertitudes liées à l'oscilloscope (de l'ordre de 3%).
 
-## Modules utilisés
+## :books: Modules utilisés
 
 Les modules utilisés lors de l'éxécution de ce programme sont les suivants : **pyvisa**, **time**, **numpy**, **matplotlib.pyplot**, **sys**, **tkinter**. 
 
