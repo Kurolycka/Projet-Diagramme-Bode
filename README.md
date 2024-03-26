@@ -80,12 +80,12 @@ Voici les étapes à faire pour l'installer :
 
 ## Aide
 
-Si vous avez besoin d'aide ou de renseignements ou bien vous pouvez vous servir de ce README relativement complet, ou bien vous avez deux autres options.
-La première est que lorsque vous lancer le programme, dans l'interface où vous devez renseigner vos paramètres il y a un bouton aide. Si vous cliquez dessus une fenêtre s'ouvrira que vous pouvez garder ouverte en parallèle et dans laquelle vous avez des renseignements concernant les paramètres et le lien vers ce github contenant ce README.
+Si vous avez besoin d'aide ou de renseignements ou bien vous pouvez vous servir de ce README relativement complet, ou bien vous avez deux autres options. <br>
+La première est que lorsque vous lancer le programme, dans l'interface où vous devez renseigner vos paramètres il y a un bouton aide. Si vous cliquez dessus une fenêtre s'ouvrira que vous pouvez garder ouverte en parallèle et dans laquelle vous avez des renseignements concernant les paramètres et le lien vers ce github contenant ce README. <br>
 Autrement le fichier python associé à ce projet et permettant de lancer le programme est commenté de manière détaillée. 
 
 ## Comment lancer ce programme ?
 
 Vous avez plusieurs options pour lancer ce programme. Nous vous en proposerons deux :
--> Ou bien utiliser des IDE (environements de dévelopement intégrés) comme Spyder ou bien encore Visual Studio Code (VS Code) ou PyCharm.
--> Ou bien directement utiliser le terminal. Depuis la racine dirigez vous vers l'endroit où vous avez enregistrer le fichier python de ce github à l'aide de **cd** par exemple. Puis une fois là où le fichier est enregistré exécutez la commande : **python3 merge\ interf-projet\ V2\ -\ Copie.py**.  Bien sûr vous pouvez modifier cette commande en fonction de la version de python que vous avez d'installé ou bien directement mettre le chemin complet du fichier au lieu de naviguer jusqu'au dossier où il se trouve.
+-> Ou bien utiliser des IDE (environements de dévelopement intégrés) comme Spyder ou bien encore Visual Studio Code (VS Code) ou PyCharm. <br>
+-> Ou bien directement utiliser le terminal. Depuis la racine dirigez vous vers l'endroit où vous avez enregistrer le fichier python de ce github à l'aide de **cd** par exemple. Puis une fois là où le fichier est enregistré exécutez la commande : **python3 merge\ interf-projet\ V2\ -\ Copie.py**.  Bien sûr vous pouvez modifier cette commande en fonction de la version de python que vous avez d'installé ou bien directement mettre le chemin complet du fichier au lieu de naviguer jusqu'au dossier où il se trouve. <br>
