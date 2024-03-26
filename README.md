@@ -98,3 +98,5 @@ Vous avez plusieurs options pour lancer ce programme. Nous vous en proposerons d
 
 
 ## Auteurs du programme 
+
+Ce programme a été écrit par Adrien TOULOUSE et Manon NOLOT dans le cadre de la première année du Master de Physique Numérique de l'université de Montpellier. 
