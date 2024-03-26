@@ -89,7 +89,8 @@ Il n'est pas important que vous mettiez des points ou des virgules comme sépara
 :small_blue_diamond: Le premier autoset pour la première fréquence n'est pas optionnel. <br>
 :small_blue_diamond: Les incertitudes sont affichées sur le graphe final. Si vous n'arrivez pas à les voir c'est que l'incertitude est trop petite. Ces incertitudes sont calculées à l'aide des incertitudes liées à l'oscilloscope (de l'ordre de 3% pour le gain et de 3° pour la phase). <br>
 :small_blue_diamond: La phase est comprise entre 0 et 180°. <br>
-:small_blue_diamond: Si l'amplitude du signal de sortie est plus petite ou égale à 50mV alors on ne fera pas la mesure pour cette fréquence. En effet l'incertitude devient alors trop grande par rapport à la valeur et cela fausserait complètement le diagramme. 
+:small_blue_diamond: Si l'amplitude du signal de sortie est plus petite ou égale à 50mV alors on ne fera pas la mesure pour cette fréquence. En effet l'incertitude devient alors trop grande par rapport à la valeur et cela fausserait complètement le diagramme. <br>
+:small_blue_diamond: Sur les points à problèmes, où l'oscilloscope a du mal à faire des mesures (signal trop faible ou autre), le programme tente 3 fois de faire les mesure et si il échoue les 3 fois alors il passe à la fréquence suivante sans prendre en compte celle pour laquelle il n'a pas réussi à faire les mesures. 
 
 ## Trigger
 
