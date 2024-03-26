@@ -7,11 +7,11 @@ Ce programme vous donnera au final un diagramme de gain avec le gain du système
 
 :small_blue_diamond: Pour exécuter ce programme il n'est nécessaire de télécharger que le fichier python contenu dans ce github et rien d'autre.
 
-## Auteurs du programme 
+## :pen: Auteurs du programme 
 
 Ce programme a été écrit par Adrien TOULOUSE et Manon NOLOT dans le cadre d'un projet d'Acquisition et de Traitement des données de la première année du Master de Physique Numérique de l'université de Montpellier. 
 
-## Références de machines à utiliser
+## :identification_card: Références de machines à utiliser
 
 Ce programme a été créé en se servant d'un oscilloscope et d'un GBF spécifiques. Effectivement si vous n'utilisez pas les mêmes les commandes de programmation pourront différer et mener à l'échec du programme. 
 
@@ -20,7 +20,7 @@ Ce programme a été créé en se servant d'un oscilloscope et d'un GBF spécifi
 
 Il n'est pas nécessaire pour ce programme de renseigner sur quels ports vous avez branchés vos instruments. En effet le programme cherchera par lui-même ces ports en les identifiant grâce à des mots-clés liés à leur référence. 
 
-## Paramètres que vous pouvez choisir
+## :gear: Paramètres que vous pouvez choisir
 
 Voici une présentation des paramètres utilisés dans ce programme, de leur signification et des conditions qu'ils doivent remplir.
 
@@ -51,7 +51,7 @@ Vous pouvez choisir de l'afficher grâce à une case à cocher.
 
 Il n'est pas important que vous mettiez des points ou des virgules comme séparateurs pour les nombres, "300.7" et "300,7" par exemple fonctionneront de la même manière.
 
-## Paramètres imposés
+## :lock: Paramètres imposés
 
 **voie_sortie** = Correspond à la voie de l'oscilloscope sur laquelle arrive le signal de sortie de votre circuit quelconque. Par défaut si votre **voie_entree** est 1 ce sera 2 et vice-versa.
 
@@ -60,7 +60,7 @@ Si votre fréquence de fin (**freq_fin**) est strictement inférieure à 1E7 Hz 
 Si votre fréquence de fin (**freq_fin**) est comprise entre 1E7 Hz inclus et 3E7 Hz exclus alors elle sera de 5V.
 Si votre fréquence de fin (**freq_fin**) est comprise entre 3E7 Hz inclus et 6E7Hz exclus alors elle sera de 2,5V.
 
-## Boutons de l'interface
+## :mouse_three_button: Boutons de l'interface
 
 **Aide** : En cliquant sur ce bouton vous ouvres une nouvelle fenêtre que vous pouvez garder en parallèle et qui contient des renseignements supplémentaires sur les paramètres à choisir et qui contient le lien vers le github contenant ce README.
 
@@ -68,7 +68,7 @@ Si votre fréquence de fin (**freq_fin**) est comprise entre 3E7 Hz inclus et 6E
 
 **Quitter** : En cliquant sur ce bouton vous l'interface pour choisir vos paramètres se fermera et le programme arrêtera de s'exécuter. Si vous voulez recommencer il faudra relancer le programme.
 
-## Caractéristiques générales du programme
+## :bookmark_tabs: Caractéristiques générales du programme
 
 -> Etant donné que vous cherchez à tracer un diagramme de Bode il vous est imposé que le signal d'entrée soit sinusoïdal. <br>
 -> Le couplage est en AC sur les deux voies. <br>
@@ -89,19 +89,19 @@ Voici les étapes à faire pour l'installer :
 3) Attendez que l'installation soit terminée. Une fois l'installation réussie, le programme devrait s'exécuter sans soucis.
 
 
-## Aide
+## :ring_buoy: Aide
 
 Si vous avez besoin d'aide ou de renseignements ou bien vous pouvez vous servir de ce README relativement complet, ou bien vous avez deux autres options. <br>
 La première est que lorsque vous lancer le programme, dans l'interface où vous devez renseigner vos paramètres il y a un bouton aide. Si vous cliquez dessus une fenêtre s'ouvrira que vous pouvez garder ouverte en parallèle et dans laquelle vous avez des renseignements concernant les paramètres et le lien vers ce github contenant ce README. <br>
 Autrement le fichier python associé à ce projet et permettant de lancer le programme est commenté de manière détaillée. 
 
-## Comment lancer ce programme ?
+## :wrench: Comment lancer ce programme ?
 
 Vous avez plusieurs options pour lancer ce programme. Nous vous en proposerons deux : <br>
 -> Ou bien utiliser des IDE (environements de dévelopement intégrés) comme Spyder ou bien encore Visual Studio Code (VS Code) ou PyCharm. <br>
 -> Ou bien directement utiliser le terminal. Depuis la racine dirigez vous vers l'endroit où vous avez enregistrer le fichier python de ce github à l'aide de **cd** par exemple. Puis une fois là où le fichier est enregistré exécutez la commande : **python3 merge\ interf-projet\ V2\ -\ Copie.py**.  Bien sûr vous pouvez modifier cette commande en fonction de la version de python que vous avez d'installé ou bien directement mettre le chemin complet du fichier au lieu de naviguer jusqu'au dossier où il se trouve. <br>
 
-## Images de l'interface
+## :camera: Images de l'interface
 
 ![Interface](interface.png)
 
