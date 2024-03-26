@@ -37,5 +37,8 @@ Il n'est pas important que vous mettiez des points ou des virgules comme sépara
 **voie_sortie** = Correspond à la voie de l'oscilloscope sur laquelle arrive le signal de sortie de votre circuit quelconque. Par défaut si votre **voie_entree** est 1 ce sera 2 et vice-versa.
 
 **amplitude_max** = Correspond à l'amplitude maximale que le GBF peut produire. Elle est exprimée en V. 
+Si votre fréquence de fin (**freq_fin**) est strictement inférieure à 1E7 Hz alors elle sera de 10V.
+Si votre fréquence de fin (**freq_fin**) est comprise entre 1E7 Hz inclus et 3E7 Hz exclus alors elle sera de 5V.
+Si votre fréquence de fin (**freq_fin**) est comprise entre 3E7 Hz inclus et 6E7Hz exclus alors elle sera de 2,5V.
 
 
