@@ -8,6 +8,8 @@ Ce programme a été créé en se servant d'un oscilloscope et d'un GBF spécifi
 **Pour l'oscilloscope** : GDS-1000B Series Digital Storage Oscilloscopes de Gwinstek <br>
 **Pour le générateur** : GDS-1000B Series Digital Storage Oscilloscopes de RIGOL
 
+Il n'est pas nécessaire pour ce programme de renseigner sur quels ports vous avez branchés vos instruments. En effet le programme cherchera par lui-même ces ports en les identifiant grâce à des mots-clés liés à leur référence. 
+
 ## Paramètres que vous pouvez choisir
 
 Voici une présentation des paramètres utilisés dans ce programme, de leur signification et des conditions qu'ils doivent remplir.
