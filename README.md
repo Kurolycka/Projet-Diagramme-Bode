@@ -5,7 +5,7 @@ Ce programme sert à la réalisation d'un diagramme de Bode à partir d'un oscil
 Un diagramme de Bode représente la réponse en fréquence d'un système, par exemple un système linéaire comme un filtre ou encore un amplificateur. 
 Ce programme vous donnera au final un diagramme de gain avec le gain du système en décibels (dB) en fonction de la fréquence en échelle linéaire ou logarithmique (au choix). Ainsi qu'un diagramme du déphasage du système (en °) en fonction de la fréquence en échelle linéaire ou logarithmique (au choix). 
 
-:small_blue_diamond: Pour exécuter ce programme il n'est nécessaire de télécharger que le fichier python contenu dans ce github et rien d'autre.
+:small_blue_diamond: Pour exécuter ce programme il n'est nécessaire de télécharger que le fichier python contenu dans ce github et rien d'autre. <br>
 :small_blue_diamond: : Veillez quand même à songer à allumer les appareils avant de lancer le programme.
 
 ## :pen: Auteurs du programme 
@@ -77,15 +77,15 @@ Il n'est pas important que vous mettiez des points ou des virgules comme sépara
 :small_blue_diamond: Etant donné que vous cherchez à tracer un diagramme de Bode il vous est imposé que le signal d'entrée soit sinusoïdal. <br>
 :small_blue_diamond: Le couplage est en AC sur les deux voies. <br>
 :small_blue_diamond: Lorsqu'il est possible d'éviter un auto-set entre deux fréquences différentes cela est privilégié. Mais lorsque l'on a moins de 2 périodes sur l'échelle de temps ou bien plus de 10 périodes ou alors lorsque l'amplitude du signal n'est plus entre 1,5 divisions et 2,5 divisions un autoset se fera automatiquement pour des soucis de mesures. <br>
-:small_blue_diamond: Le premier autoset pour la première fréquence n'est pas optionnel.
-:small_blue_diamond: Les incertitudes sont affichées sur le graphe final. Si vous n'arrivez pas à les voir c'est que l'incertitude est trop petite. Ces incertitudes sont calculées à l'aide des incertitudes liées à l'oscilloscope (de l'ordre de 3% pour le gain et de 3° pour la phase).
+:small_blue_diamond: Le premier autoset pour la première fréquence n'est pas optionnel. <br>
+:small_blue_diamond: Les incertitudes sont affichées sur le graphe final. Si vous n'arrivez pas à les voir c'est que l'incertitude est trop petite. Ces incertitudes sont calculées à l'aide des incertitudes liées à l'oscilloscope (de l'ordre de 3% pour le gain et de 3° pour la phase). <br>
 :small_blue_diamond: La phase est comprise entre 0 et 180°.
 
 ## Trigger
 
 L'utilisateur a le choix de choisir un trigger externe ou non. Dans ce cas il a besoin de brancher la voie "EXT TRIG" de l'oscillateur avec la voie "CH1/Sync/Ext Mod/Trig/FSK" à l'arrière du GBF ("CH2/Sync/Ext Mod/Trig/FSK" si l'output est en CH2). 
 
-:small_blue_diamond: Dans le cas où l'utilisateur choisit un trigger externe le niveau du trigger sera automatiquement mis à TTL (Transistor-Transistor Logic). 
+:small_blue_diamond: Dans le cas où l'utilisateur choisit un trigger externe le niveau du trigger sera automatiquement mis à TTL (Transistor-Transistor Logic). <br>
 :small_blue_diamond: Dans le cas où l'utilisateur ne choisit pas un trigger externe la source du trigger sera le signal d'entrée et son niveau sera mis à 0. 
 
 ## :books: Modules utilisés
