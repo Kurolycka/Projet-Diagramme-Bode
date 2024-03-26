@@ -5,7 +5,7 @@ Références de machines utilisées :
 Pour l'oscilloscope : GDS-1000B Series Digital Storage Oscilloscopes de Gwinstek
 Pour le générateur : GDS-1000B Series Digital Storage Oscilloscopes de RIGOL
 
-##Paramètres que vous pouvez choisir
+## Paramètres que vous pouvez choisir
 
 Voici une présentation des paramètres utilisés dans ce programme, de leur signification et des conditions qu'ils doivent remplir.
 
@@ -25,7 +25,7 @@ Voici une présentation des paramètres utilisés dans ce programme, de leur sig
 
 **frequence_coupure_case** = L'utilisateur peut choisir ou non d'afficher une droite à -3dB sur le graphe final du gain. Cela peut aider à évaluer la fréquence de coupure dans le cas de circuits simples. Attention cela ne vous aidra pas dans le cas de filtres d'ordre élevé, de filtres résonants, de filtres non linéaires ou bien de filtres spéciaux (Butterworth, Chevyshev, etc...).
 
-##Paramètres imposés
+## Paramètres imposés
 
 **voie_sortie** = Correspond à la voie de l'oscilloscope sur laquelle arrive le signal de sortie de votre circuit quelconque. Par défaut si votre **voie_entree** est 1 ce sera 2 et vice-versa.
 
