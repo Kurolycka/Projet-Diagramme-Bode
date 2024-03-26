@@ -65,6 +65,19 @@ Si votre fréquence de fin (**freq_fin**) est comprise entre 3E7 Hz inclus et 6E
 -> Lorsqu'il est possible d'éviter un auto-set entre deux fréquences différentes cela est privilégié. Mais lorsque l'on a moins de 2 périodes sur l'échelle de temps ou bien plus de 10 périodes ou alors lorsque l'amplitude du signal n'est plus entre 1,5 carreaux et 2,5 carreaux un autoset se fera automatiquement pour des soucis de mesures. 
 -> Le premier autoset pour la première fréquence, qui lui n'est pas optionnel, impose le couplage et le niveau du trigger.
 
+## Modules utilisés
+
+Les modules utilisés lors de l'éxécution de ce programme sont les suivants : **pyvisa**, **time**, **numpy**, **matplotlib.pyplot**, **sys**, **tkinter**. 
+
+**numpy**, **matplotlib.pyplot**, **sys** et **tkinter** sont des bibliothèques Python standard qui sont généralement incluses dans les distributions Python courantes. Vous ne devriez pas avoir à les installer séparément. 
+
+**pyvisa** par contre est une bibliothèque externe et devra peut-être être installée séparément. Elle est cependant essentielle car c'est elle qui va permettre de contrôles les instruments de mesure. 
+Voici les étapes à faire pour l'installer : 
+1) Il faut s'assurer d'avoir python d'installer sur votre système. Pour vérifier cela vous pouvez exécuter la commande suivante dans votre terminal : **python --version**
+2) Si Python n'est pas installé songez à le faire, sinon ce programme ne pourra pas fonctionner. Si Python est bien installé effectuer la commande suivante : **pip install pyvisa**
+3) Attendez que l'installation soit terminée. Une fois l'installation réussie, le programme devrait s'exécuter sans soucis.
+
+
 ## Aide
 
 Si vous avez besoin d'aide ou de renseignements ou bien vous pouvez vous servir de ce README relativement complet, ou bien vous avez deux autres options.
