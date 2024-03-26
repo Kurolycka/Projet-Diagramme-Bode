@@ -83,7 +83,10 @@ Il n'est pas important que vous mettiez des points ou des virgules comme sépara
 
 ## Trigger
 
+L'utilisateur a le choix de choisir un trigger externe ou non. Dans ce cas il a besoin de brancher la voie "EXT TRIG" de l'oscillateur avec la voie "CH1/Sync/Ext Mod/Trig/FSK" à l'arrière du GBF ("CH2/Sync/Ext Mod/Trig/FSK" si l'output est en CH2). 
 
+:small_blue_diamond: Dans le cas où l'utilisateur choisit un trigger externe le niveau du trigger sera automatiquement mis à TTL (Transistor-Transistor Logic). 
+:small_blue_diamond: Dans le cas où l'utilisateur ne choisit pas un trigger externe la source du trigger sera le signal d'entrée et son niveau sera mis à 0. 
 
 ## :books: Modules utilisés
 
