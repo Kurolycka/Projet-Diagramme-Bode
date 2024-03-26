@@ -88,6 +88,18 @@ L'utilisateur a le choix de choisir un trigger externe ou non. Dans ce cas il a 
 :small_blue_diamond: Dans le cas où l'utilisateur choisit un trigger externe le niveau du trigger sera automatiquement mis à TTL (Transistor-Transistor Logic). <br>
 :small_blue_diamond: Dans le cas où l'utilisateur ne choisit pas un trigger externe la source du trigger sera le signal d'entrée et son niveau sera mis à 0. 
 
+## Enregistrement
+
+Il est possible d'enregistrer un fichier avec les données du diagramme de Bode, pour cela il faut cliquer sur la case "Enregistrer le fichier des données". <br>
+Dans ce fichier seront : une en-tête avec les paramètres qui ont été utilisés (la plage de fréquence et l'échelle avec laquelle elle a été balayée, l'amplitude d'entrée choisie et le nombre de points choisis), puis un tableau avec une ligne d'étiquettes contenant les fréquences, l'incertitude des fréquences, les gains, l'incertitude des gains, les phases et les incertitudes des phases. 
+
+Ce fichier s'enregistrera dans le même dossier où votre programme est enregistré. C'est-à-dire que si vous enregistrer le programme sur le bureau le fichier se trouvera sur le bureau, mais si vous enregistrez votre programme dans un dossier quelconque le fichier s'enregistrera dans ce dossier quelconque. 
+
+Le fichier aura le nom que vous lui donnerez dans le champ de saisi "Nom pour l'enregistrement du fichier" avec une extension txt qui se met automatiquement. Si vous ne choisissez pas de nom pour le fichier, ce dernier s'enregistrera tout de même sous le nom "Diagramme_Bode.txt" si vous cochez la case pour enregistrer. Cependant il faut faire attention car la prochaine fois que vous enregistrerez un fichier sans choisir de nom il remplacera le précédent du même nom "Diagramme_Bode.txt". Il est donc conseillé de choisir un nom à tous vos fichiers. <br>
+Nous avons choisit de faire le choix de l'écrasement pour éviter de polluer l'ordinateur avec par exemple des "Diagramme_Bode1.txt", "Diagramme_Bode2.txt", "Diagramme_Bode3.txt"... etc. Cela force ainsi l'utilisateur à nommer ses fichiers et à terme à moins s'y perdre.
+
+Pour faciliter la récupération des données dans par exemple un tableur csv nous avons fait en sorte que les données du tableau soient alignées pour en faciliter la séparation. 
+
 ## :books: Modules utilisés
 
 Les modules utilisés lors de l'éxécution de ce programme sont les suivants : **pyvisa**, **time**, **numpy**, **matplotlib.pyplot**, **sys**, **tkinter**. 
