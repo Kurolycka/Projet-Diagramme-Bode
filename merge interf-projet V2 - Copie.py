@@ -1,5 +1,5 @@
 #%matplotlib qt
-import pyvisa
+#import pyvisa
 import time
 from numpy import *
 import matplotlib.pyplot as plt
@@ -293,7 +293,7 @@ ttk.Label(frm, text="Amplitude du signal d'entrée (V) : ", style='Custom.TLabel
 entry5 = ttk.Entry(frm)
 entry5.grid(column=1, row=8, columnspan=2)
 
-# -----{Saisie du nombre d'échantillons de mesure
+# Saisie du nombre d'échantillons de mesure
 ttk.Label(frm, text="Nombre d'échantillons utilisés pour le tracé : ", style='Custom.TLabel').grid(column=0, row=9)
 options_moyenne = ["2", "4", "8", "16", "32", "64", "128", "256"]
 moyenne_echantillon = StringVar()
