@@ -11,7 +11,7 @@ Ce programme vous donnera au final un diagramme de gain avec le gain du système
 
 Ce programme a été écrit par Adrien TOULOUSE et Manon NOLOT dans le cadre d'un projet d'Acquisition et de Traitement des données de la première année du Master de Physique Numérique de l'université de Montpellier. 
 
-## :identification_card: Références de machines à utiliser
+## :toolbox: Références de machines à utiliser
 
 Ce programme a été créé en se servant d'un oscilloscope et d'un GBF spécifiques. Effectivement si vous n'utilisez pas les mêmes les commandes de programmation pourront différer et mener à l'échec du programme. 
 
