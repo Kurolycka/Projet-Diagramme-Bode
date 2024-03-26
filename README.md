@@ -51,7 +51,7 @@ Il peut être intéressant de jouer sur ce paramètre si vous avez des signaux t
 **echelle** : Correspond à l'échelle du graphique vous choisissez. Ou bien vous aurez un graphe final en échelle linéaire ou bien en échelle semi-logarithmique avec l'échelle des fréquences en échelle logarithmique sur le diagramme du gain. Il est conseillé de choisir l'échelle semi-logarithmique pour une meilleure practicité de lecture mais le choix est laissé à l'utilisateur. <br>
 Vous ferez votre choix à l'aide de boutons radios. 
 
-**frequence_coupure_case** : L'utilisateur peut choisir ou non d'afficher une droite à -3dB sur le graphe final du gain. Cela peut aider à évaluer la fréquence de coupure dans le cas de circuits simples. Attention cela ne vous aidra pas dans le cas de filtres d'ordre élevé, de filtres résonants, de filtres non linéaires ou bien de filtres spéciaux (Butterworth, Chevyshev, etc...). <br>
+**frequence_coupure_case** : L'utilisateur peut choisir ou non d'afficher une droite à -3dB du gain maximal sur le graphe final du gain. Cela peut aider à évaluer la fréquence de coupure dans le cas de circuits simples. Attention cela ne vous aidra pas dans le cas de filtres d'ordre élevé, de filtres résonants, de filtres non linéaires ou bien de filtres spéciaux (Butterworth, Chevyshev, etc...). <br>
 Vous pouvez choisir de l'afficher grâce à une case à cocher.
 
 **trigger_externe** = L'utilisateur peut choisir d'avoir un trigger externe si cela peut l'aider à avoir des mesures plus précises.
