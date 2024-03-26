@@ -41,4 +41,8 @@ Si votre fréquence de fin (**freq_fin**) est strictement inférieure à 1E7 Hz 
 Si votre fréquence de fin (**freq_fin**) est comprise entre 1E7 Hz inclus et 3E7 Hz exclus alors elle sera de 5V.
 Si votre fréquence de fin (**freq_fin**) est comprise entre 3E7 Hz inclus et 6E7Hz exclus alors elle sera de 2,5V.
 
+## Aide
 
+Si vous avez besoin d'aide ou de renseignements ou bien vous pouvez vous servir de ce README relativement complet, ou bien vous avez deux autres options.
+La première est que lorsque vous lancer le programme, dans l'interface où vous devez renseigner vos paramètres il y a un bouton aide. Si vous cliquez dessus une fenêtre s'ouvrira que vous pouvez garder ouverte en parallèle et dans laquelle vous avez des renseignements concernant les paramètres et le lien vers ce github contenant ce README.
+Autrement le fichier python associé à ce projet et permettant de lancer le programme est commenté de manière détaillée. 
