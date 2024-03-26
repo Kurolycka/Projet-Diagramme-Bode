@@ -60,7 +60,7 @@ Si votre fréquence de fin (**freq_fin**) est strictement inférieure à 1E7 Hz 
 Si votre fréquence de fin (**freq_fin**) est comprise entre 1E7 Hz inclus et 3E7 Hz exclus alors elle sera de 5V.
 Si votre fréquence de fin (**freq_fin**) est comprise entre 3E7 Hz inclus et 6E7Hz exclus alors elle sera de 2,5V.
 
-## :mouse_three_button: Boutons de l'interface
+## :pause_button: Boutons de l'interface
 
 **Aide** : En cliquant sur ce bouton vous ouvres une nouvelle fenêtre que vous pouvez garder en parallèle et qui contient des renseignements supplémentaires sur les paramètres à choisir et qui contient le lien vers le github contenant ce README.
 
