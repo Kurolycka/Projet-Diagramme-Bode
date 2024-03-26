@@ -94,7 +94,7 @@ Vous avez plusieurs options pour lancer ce programme. Nous vous en proposerons d
 
 ## Images de l'interface
 
-![Texte alternatif](C:\Users\33782\Desktop\Projet Diagramme Bode\interface.png)
+![Texte alternatif](interface.png)
 
 
 ## Auteurs du programme 
