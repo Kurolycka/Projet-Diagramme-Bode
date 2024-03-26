@@ -88,8 +88,7 @@ Voici les étapes à faire pour l'installer :
 2) Si Python n'est pas installé songez à le faire, sinon ce programme ne pourra pas fonctionner. Si Python est bien installé effectuer la commande suivante : **pip install pyvisa**
 3) Attendez que l'installation soit terminée. Une fois l'installation réussie, le programme devrait s'exécuter sans soucis.
 
-
-## :ring_buoy: Aide
+## :telephone: Aide
 
 Si vous avez besoin d'aide ou de renseignements ou bien vous pouvez vous servir de ce README relativement complet, ou bien vous avez deux autres options. <br>
 La première est que lorsque vous lancer le programme, dans l'interface où vous devez renseigner vos paramètres il y a un bouton aide. Si vous cliquez dessus une fenêtre s'ouvrira que vous pouvez garder ouverte en parallèle et dans laquelle vous avez des renseignements concernant les paramètres et le lien vers ce github contenant ce README. <br>
