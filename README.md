@@ -1,7 +1,13 @@
 # Projet-Diagramme-Bode
-Projet d'Acquisition des données 2, M1 Physique Numérique. 
 
-Blabla diagramme de bode
+Ce programme sert à la réalisation d'un diagramme de Bode à partir d'un oscilloscope et d'un générateur de références spécifiques. Il sert à automatiser les nombreuses mesures fastidieuses qu'un diagramme de Bode nécessite.
+
+Un diagramme de Bode représente la réponse en fréquence d'un système, par exemple un système linéaire comme un filtre ou encore un amplificateur. 
+Ce programme vous donnera au final un diagramme de gain avec le gain du système en décibels (dB) en fonction de la fréquence en échelle linéaire ou logarithmique (au choix). Ainsi qu'un diagramme du déphasage du système (en °) en fonction de la fréquence en échelle linéaire ou logarithmique (au choix). 
+
+## Auteurs du programme 
+
+Ce programme a été écrit par Adrien TOULOUSE et Manon NOLOT dans le cadre d'un projet d'Acquisition et de Traitement des données de la première année du Master de Physique Numérique de l'université de Montpellier. 
 
 ## Références de machines à utiliser
 
@@ -66,6 +72,7 @@ Si votre fréquence de fin (**freq_fin**) est comprise entre 3E7 Hz inclus et 6E
 -> Le couplage est en AC sur les deux voies. <br>
 -> Lorsqu'il est possible d'éviter un auto-set entre deux fréquences différentes cela est privilégié. Mais lorsque l'on a moins de 2 périodes sur l'échelle de temps ou bien plus de 10 périodes ou alors lorsque l'amplitude du signal n'est plus entre 1,5 carreaux et 2,5 carreaux un autoset se fera automatiquement pour des soucis de mesures. <br>
 -> Le premier autoset pour la première fréquence, qui lui n'est pas optionnel, impose le couplage et le niveau du trigger. <br>
+-> Les incertitudes sont affichées sur le graphe final. Si vous n'arrivez pas à les voir c'est qu'il y a trop de points sur votre graphe pour qu'elles soient affichées correctement. Ces incertitudes sont calculées à l'aide des incertitudes liées à l'oscilloscope (de l'ordre de 3%).
 
 ## Modules utilisés
 
@@ -96,7 +103,3 @@ Vous avez plusieurs options pour lancer ce programme. Nous vous en proposerons d
 
 ![Texte alternatif](interface.png)
 
-
-## Auteurs du programme 
-
-Ce programme a été écrit par Adrien TOULOUSE et Manon NOLOT dans le cadre de la première année du Master de Physique Numérique de l'université de Montpellier. 
