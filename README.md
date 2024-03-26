@@ -1,6 +1,8 @@
 # Projet-Diagramme-Bode
 Projet d'Acquisition des données 2, M1 Physique Numérique. 
 
+Blabla diagramme de bode
+
 ## Références de machines à utiliser
 
 Ce programme a été créé en se servant d'un oscilloscope et d'un GBF spécifiques. Effectivement si vous n'utilisez pas les mêmes les commandes de programmation pourront différer et mener à l'échec du programme. 
@@ -60,10 +62,10 @@ Si votre fréquence de fin (**freq_fin**) est comprise entre 3E7 Hz inclus et 6E
 
 ## Caractéristiques générales du programme
 
--> Etant donné que vous cherchez à tracer un diagramme de Bode il vous est imposé que le signal d'entrée soit sinusoïdal. 
--> Le couplage est en AC sur les deux voies. 
--> Lorsqu'il est possible d'éviter un auto-set entre deux fréquences différentes cela est privilégié. Mais lorsque l'on a moins de 2 périodes sur l'échelle de temps ou bien plus de 10 périodes ou alors lorsque l'amplitude du signal n'est plus entre 1,5 carreaux et 2,5 carreaux un autoset se fera automatiquement pour des soucis de mesures. 
--> Le premier autoset pour la première fréquence, qui lui n'est pas optionnel, impose le couplage et le niveau du trigger.
+-> Etant donné que vous cherchez à tracer un diagramme de Bode il vous est imposé que le signal d'entrée soit sinusoïdal. <br>
+-> Le couplage est en AC sur les deux voies. <br>
+-> Lorsqu'il est possible d'éviter un auto-set entre deux fréquences différentes cela est privilégié. Mais lorsque l'on a moins de 2 périodes sur l'échelle de temps ou bien plus de 10 périodes ou alors lorsque l'amplitude du signal n'est plus entre 1,5 carreaux et 2,5 carreaux un autoset se fera automatiquement pour des soucis de mesures. <br>
+-> Le premier autoset pour la première fréquence, qui lui n'est pas optionnel, impose le couplage et le niveau du trigger. <br>
 
 ## Modules utilisés
 
@@ -86,6 +88,13 @@ Autrement le fichier python associé à ce projet et permettant de lancer le pro
 
 ## Comment lancer ce programme ?
 
-Vous avez plusieurs options pour lancer ce programme. Nous vous en proposerons deux :
+Vous avez plusieurs options pour lancer ce programme. Nous vous en proposerons deux : <br>
 -> Ou bien utiliser des IDE (environements de dévelopement intégrés) comme Spyder ou bien encore Visual Studio Code (VS Code) ou PyCharm. <br>
 -> Ou bien directement utiliser le terminal. Depuis la racine dirigez vous vers l'endroit où vous avez enregistrer le fichier python de ce github à l'aide de **cd** par exemple. Puis une fois là où le fichier est enregistré exécutez la commande : **python3 merge\ interf-projet\ V2\ -\ Copie.py**.  Bien sûr vous pouvez modifier cette commande en fonction de la version de python que vous avez d'installé ou bien directement mettre le chemin complet du fichier au lieu de naviguer jusqu'au dossier où il se trouve. <br>
+
+## Images de l'interface
+
+![Texte alternatif](C:\Users\33782\Desktop\Projet Diagramme Bode\interface.png)
+
+
+## Auteurs du programme 
