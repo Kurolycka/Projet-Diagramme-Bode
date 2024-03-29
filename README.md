@@ -139,7 +139,7 @@ Vous avez plusieurs options pour lancer ce programme. Nous vous en proposerons d
 
 ## :camera: Images de l'interface et exemples
 
-![Interface](Interface param RLR50pt.PNG)
+![Interface](interface.png)
 
 
 Cette interface n'est pas très moderne. C'est un choix. En effet il aurait été possible de la rendre plus moderne mais pour cela il aurait été probablement nécessaire que l'utilisateur installe d'autres bibliothèques externes en plus de **pyvisa**. Nous avons donc préféré avoir un look un peu moins moderne au profit d'une meilleure portabilité.
