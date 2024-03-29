@@ -8,14 +8,6 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 
-# --------------------{Objectifs}---------------------
- 
-# comparer avec la valeur théorique de la fréquence de coupure 
-
-# --------------------{Améliorations}---------------------
-
-# Récupérer l'état de l'oscillo pour savoir si il est prêt à faire la mesure
-# Moduler le temps d'attente de l'autoset en fonction de moyenne
 
 # --------------------{Préparation des variables globales}---------------------
 """
