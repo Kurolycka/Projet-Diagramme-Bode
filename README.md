@@ -88,7 +88,6 @@ Il n'est pas important que vous mettiez des points ou des virgules comme sépara
 :small_blue_diamond: Lorsqu'il est possible d'éviter un auto-set entre deux fréquences différentes cela est privilégié. Mais lorsque l'on a moins de 2 périodes sur l'échelle de temps ou bien plus de 10 périodes ou alors lorsque l'amplitude du signal n'est plus entre 1,5 divisions et 2,5 divisions un autoset se fera automatiquement pour des soucis de mesures. <br>
 :small_blue_diamond: Le premier autoset pour la première fréquence n'est pas optionnel. <br>
 :small_blue_diamond: Les incertitudes sont affichées sur le graphe final. Si vous n'arrivez pas à les voir c'est que l'incertitude est trop petite. Ces incertitudes sont calculées à l'aide des incertitudes liées à l'oscilloscope (de l'ordre de 3% pour le gain et de 3° pour la phase). <br>
-:small_blue_diamond: La phase est comprise entre 0 et 180°. <br>
 :small_blue_diamond: Si l'amplitude du signal de sortie est plus petite ou égale à 50mV alors on ne fera pas la mesure pour cette fréquence. En effet l'incertitude devient alors trop grande par rapport à la valeur et cela fausserait complètement le diagramme. <br>
 :small_blue_diamond: Sur les points à problèmes, où l'oscilloscope a du mal à faire des mesures (signal trop faible ou autre), le programme tente 3 fois de faire les mesure et si il échoue les 3 fois alors il passe à la fréquence suivante sans prendre en compte celle pour laquelle il n'a pas réussi à faire les mesures. 
 
@@ -144,4 +143,4 @@ Vous avez plusieurs options pour lancer ce programme. Nous vous en proposerons d
 
 Cette interface n'est pas très moderne. C'est un choix. En effet il aurait été possible de la rendre plus moderne mais pour cela il aurait été probablement nécessaire que l'utilisateur installe d'autres bibliothèques externes en plus de **pyvisa**. Nous avons donc préféré avoir un look un peu moins moderne au profit d'une meilleure portabilité.
 
-![DiagrammeBode](Bode RLR50pt.png)
+![DiagrammeBode](bodeRLR.png)
