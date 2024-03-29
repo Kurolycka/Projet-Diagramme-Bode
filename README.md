@@ -149,4 +149,4 @@ Exemple du Diagramme de Bode obtenu pour un circuit RLR :
 
 Exemple du fichier de données obtenu : 
 
-![FichierDonnées](donnéesRLR.png)
+![FichierDonnées](donnéesRLR.PNG)
