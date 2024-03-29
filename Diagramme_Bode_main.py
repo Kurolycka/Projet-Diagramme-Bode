@@ -724,8 +724,8 @@ if case_enregistrer :
         
     fichier = open(f"{nom_fichier}.txt", "w")
     fichier.write("Paramètres utilisés : \n"
-                  f" - Plage de fréquence : [{freq_dep}, {freq_fin}] en échelle {echelle}\n"
-                  f" - Amplitude d'entrée : {amplitude_entree}\n"
+                  f" - Plage de fréquence : [{freq_dep}, {freq_fin}] Hz en échelle {echelle}\n"
+                  f" - Amplitude d'entrée : {amplitude_entree} V\n"
                   f" - Nombre de point : {nb_points}\n")
     fichier.write("----------{Valeurs}----------\n")
     fichier.write("{:^20} | {:^20} | {:^20} | {:^20} | {:^20} | {:^20} | {:^20} | {:^20} | {:^20} | {:^20}\n".format("Fréquence",
