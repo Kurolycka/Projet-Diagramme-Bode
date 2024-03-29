@@ -137,9 +137,11 @@ Vous avez plusieurs options pour lancer ce programme. Nous vous en proposerons d
 :small_blue_diamond: Ou bien utiliser des IDE (environements de dévelopement intégrés) comme Spyder ou bien encore Visual Studio Code (VS Code) ou PyCharm. <br>
 :small_blue_diamond: Ou bien directement utiliser le terminal. Depuis la racine dirigez vous vers l'endroit où vous avez enregistrer le fichier python de ce github à l'aide de **cd** par exemple. Puis une fois là où le fichier est enregistré exécutez la commande : **python3 merge\ interf-projet\ V2\ -\ Copie.py**.  Bien sûr vous pouvez modifier cette commande en fonction de la version de python que vous avez d'installé ou bien directement mettre le chemin complet du fichier au lieu de naviguer jusqu'au dossier où il se trouve. <br>
 
-## :camera: Images de l'interface
+## :camera: Images de l'interface et exemples
 
 ![Interface](Interface param RLR50pt.PNG)
 
 
 Cette interface n'est pas très moderne. C'est un choix. En effet il aurait été possible de la rendre plus moderne mais pour cela il aurait été probablement nécessaire que l'utilisateur installe d'autres bibliothèques externes en plus de **pyvisa**. Nous avons donc préféré avoir un look un peu moins moderne au profit d'une meilleure portabilité.
+
+![DiagrammeBode](Bode RLR50pt.png)
