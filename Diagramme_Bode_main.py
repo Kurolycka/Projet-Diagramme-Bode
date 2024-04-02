@@ -645,7 +645,7 @@ for freq in plage_freq:
         break
 
     if ampli_sortie <= 100E-3 or essais == 3:
-        print(f"La mesure de la fréquence {freq} à trop échoué, passage à la fréquence suivante.")
+        print(f"La mesure de la fréquence {freq} Hz à trop échoué, passage à la fréquence suivante.")
         continue
 
     # Si le signal n'est pas entre 2 et 10 périodes de longueur ou s'il n'est pas contenu entre 1 et 3 fois l'échelle
